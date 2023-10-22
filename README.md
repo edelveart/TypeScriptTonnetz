@@ -8,7 +8,8 @@ Tonnetz spaces and NRT-transformations.
 * [x] EnneaCycles
 * [x] Weitzmann Regions    
 
-* Commit "cbd4f62" has code by Amiika Alonen (ZiffersJS):
+Commit "cbd4f62" has code by Amiika Alonen (ZiffersJS):
+
 -  Type: ChordGenerationFunction (line 15)
 -  Type: ChordGenerators (line 17)
 -  Function: chordFromTonnetz (line 162)
