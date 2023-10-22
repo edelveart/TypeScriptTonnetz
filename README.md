@@ -2,6 +2,11 @@
 
 Tonnetz spaces and NRT-transformations. 
 
+* [x] PRL functions
+* [x] HexaCycles
+* [x] OctaCycles
+* [x] EnneaCycles
+* [x] Weitzmann Regions    
 
 * Commit "cbd4f62" has code by Amiika Alonen (ZiffersJS):
 - [x] Type: ChordGenerationFunction (line 15)
