@@ -236,4 +236,22 @@ export const weitzmannRegions = (rootNote: number, tonnetz: TonnetzSpaces = [3, 
     return treeChords;
 }
 
+export const octaTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[][] => {
+    const [a] = tonnetz;
+    const octaLeft: Tetrachord[] = [];
+    const octaCenter: Tetrachord[] = [];
+    const octaRight: Tetrachord[] = [];
+    for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
+        const baseNote = rootNote + index;
+        const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz))
+        const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
+        const rightDominant7 = chordNotesToModN(dominantSeventChord(baseNote + a, tonnetz));
+        octaLeft.push(leftHalfDim7);
+        octaCenter.push(centerMinor7);
+        octaRight.push(rightDominant7);
+    }
+    const octaTowerMatrix: Tetrachord[][] = [];
+    octaTowerMatrix.push(octaLeft, octaCenter, octaRight);
+    return octaTowerMatrix;
+}
 
