@@ -93,6 +93,18 @@ export const augmentedTriadChord = (rootNote: number, tonnetz: TonnetzSpaces): T
     return augmentedTriad;
 }
 
+export const diminishedSeventhChord = (rootNote: number, tonnetz: TonnetzSpaces): Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+
+    const dim7: Tetrachord = [null, null, null, null];
+    for (let index = 0; index < 4; index++) {
+        const baseNote = (rootNote + ((a * index) % modulo) + modulo) % modulo;
+        dim7[index] = baseNote;
+    }
+    return dim7;
+};
+
 export const chordNotesToModN = <T extends number[]>(chord: T, modulo: number = 12): T => {
     const notesModN: number[] = [];
     for (let i = 0; i < chord.length; i++) {
@@ -156,7 +168,8 @@ export const CHORD_TYPES: ChordGenerators = {
     "m7": minorSeventhChord,
     "hdim7": halfDiminishedChord,
     "aug": augmentedTriadChord,
-    "augmented": augmentedTriadChord
+    "augmented": augmentedTriadChord,
+    "dim7": diminishedSeventhChord
 };
 
 export const chordFromTonnetz = (rootNote: number, chordType: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord | Tetrachord => {
@@ -255,3 +268,22 @@ export const octaTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5],
     return octaTowerMatrix;
 }
 
+export const boretzRegions = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): Map<Tetrachord, Tetrachord[]> => {
+    const [a, b, c] = tonnetz;
+    const diminished7Chord: Tetrachord = diminishedSeventhChord(rootNote, tonnetz);
+
+    const arrayTargetSet: Tetrachord[] = [];
+    const childChord1 = chordNotesToModN(dominantSeventChord(rootNote - (b - a), tonnetz));
+    const childChord2 = chordNotesToModN(halfDiminishedChord(rootNote + a, tonnetz));
+    const childChord3 = chordNotesToModN(dominantSeventChord(rootNote + (c - a), tonnetz));
+    const childChord4 = chordNotesToModN(halfDiminishedChord(rootNote + (c + (b - a)), tonnetz));
+    const childChord5 = chordNotesToModN(dominantSeventChord(rootNote - (a + b), tonnetz));
+    const childChord6 = chordNotesToModN(halfDiminishedChord(rootNote + (-a), tonnetz));
+    const childChord7 = chordNotesToModN(dominantSeventChord(rootNote + (-b), tonnetz));
+    const childChord8 = chordNotesToModN(halfDiminishedChord(rootNote, tonnetz));
+    arrayTargetSet.push(childChord1, childChord2, childChord3, childChord4, childChord5, childChord6, childChord7, childChord8);
+
+    const treeChords: Map<Tetrachord, Tetrachord[]> = new Map();
+    treeChords.set(diminished7Chord, arrayTargetSet)
+    return treeChords;
+}
