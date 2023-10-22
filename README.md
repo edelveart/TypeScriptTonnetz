@@ -6,7 +6,8 @@ Tonnetz spaces and NRT-transformations.
 * [x] HexaCycles
 * [x] OctaCycles
 * [x] EnneaCycles
-* [x] Weitzmann Regions    
+* [x] Weitzmann Regions
+* [x] OctaTowers     
 
 const COMMIT "cbd4f62" has code by Amiika Alonen (ZiffersJS) = {
 
@@ -17,3 +18,4 @@ const COMMIT "cbd4f62" has code by Amiika Alonen (ZiffersJS) = {
 -  Function: transform (line 172)
 
 }
+
