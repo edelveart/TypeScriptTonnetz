@@ -119,8 +119,11 @@ export const parallelTransform: TransformationFunctions = (chordFromTonnetz, ton
     const modulo = a + b + c;
     const p: number = (a - b);
 
-    const transformedChord: TriadChord = [...chordFromTonnetz];
-    if (transformedChord[1] !== (transformedChord[0] + b)) {
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    const rootPositionTriad = sortingTriaChord(reduceModN);
+    const transformedChord: TriadChord = [...rootPositionTriad];
+
+    if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
         transformedChord[1] -= p;
     } else {
         transformedChord[1] += p;
@@ -134,8 +137,10 @@ export const leadingToneTransform: TransformationFunctions = (chordFromTonnetz, 
     const modulo = a + b + c;
     const l: number = (b - c);
 
-    const transformedChord: TriadChord = [...chordFromTonnetz];
-    if (transformedChord[1] !== (transformedChord[0] + b)) {
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    const rootPositionTriad = sortingTriaChord(reduceModN);
+    const transformedChord: TriadChord = [...rootPositionTriad];
+    if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
         transformedChord[2] -= l;
     } else {
         transformedChord[0] += l;
@@ -149,8 +154,10 @@ export const relativeTransform: TransformationFunctions = (chordFromTonnetz, ton
     const modulo = a + b + c;
     const r: number = (a - c)
 
-    const transformedChord: TriadChord = [...chordFromTonnetz]
-    if (transformedChord[1] !== (transformedChord[0] + b)) {
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    const rootPositionTriad = sortingTriaChord(reduceModN);
+    const transformedChord: TriadChord =  [...rootPositionTriad];
+    if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
         transformedChord[0] += r;
     } else {
         transformedChord[2] -= r;
@@ -286,4 +293,21 @@ export const boretzRegions = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 
     const treeChords: Map<Tetrachord, Tetrachord[]> = new Map();
     treeChords.set(diminished7Chord, arrayTargetSet)
     return treeChords;
+}
+
+export function sortingTriaChord(disorderedTriad: TriadChord): TriadChord {
+    disorderedTriad.sort((a, b) => a - b);
+    const temp: TriadChord = [...disorderedTriad];
+
+    if (Math.abs(disorderedTriad[1] - disorderedTriad[0]) === 5) {
+        disorderedTriad[0] = temp[1];
+        disorderedTriad[1] = temp[2];
+        disorderedTriad[2] = temp[0];
+    }
+    if (Math.abs(disorderedTriad[2] - disorderedTriad[1]) === 5) {
+        disorderedTriad[0] = temp[2];
+        disorderedTriad[1] = temp[0];
+        disorderedTriad[2] = temp[1];
+    }
+    return disorderedTriad
 }
