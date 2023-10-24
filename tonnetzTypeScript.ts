@@ -53,7 +53,7 @@ export const dominantSeventChord = (rootNote: number, tonnetz: TonnetzSpaces): T
 
     const dominant7: Tetrachord = [firstNote, secondNote, thirdNote, fourthNote];
     return dominant7;
-};
+}
 
 export const minorSeventhChord = (rootNote: number, tonnetz: TonnetzSpaces): Tetrachord => {
     const [a, b, c] = tonnetz;
@@ -66,7 +66,7 @@ export const minorSeventhChord = (rootNote: number, tonnetz: TonnetzSpaces): Tet
 
     const min7: Tetrachord = [firstNote, secondNote, thirdNote, fourthNote];
     return min7;
-};
+}
 
 export const halfDiminishedChord = (rootNote: number, tonnetz: TonnetzSpaces): Tetrachord => {
     const [a, b, c] = tonnetz;
@@ -79,7 +79,7 @@ export const halfDiminishedChord = (rootNote: number, tonnetz: TonnetzSpaces): T
 
     const halfdim7: Tetrachord = [firstNote, secondNote, thirdNote, fourthNote];
     return halfdim7;
-};
+}
 
 export const augmentedTriadChord = (rootNote: number, tonnetz: TonnetzSpaces): TriadChord => {
     const [a, b, c] = tonnetz;
@@ -103,7 +103,7 @@ export const diminishedSeventhChord = (rootNote: number, tonnetz: TonnetzSpaces)
         dim7[index] = baseNote;
     }
     return dim7;
-};
+}
 
 export const chordNotesToModN = <T extends number[]>(chord: T, modulo: number = 12): T => {
     const notesModN: number[] = [];
@@ -114,16 +114,17 @@ export const chordNotesToModN = <T extends number[]>(chord: T, modulo: number = 
     return notesModN as T;
 }
 
-export function sortingTriadChord(disorderedTriad: TriadChord): TriadChord {
-    disorderedTriad.sort((a, b) => a - b);
+export function sortingTriadChord(disorderedTriad: TriadChord, tonnetz: TonnetzSpaces): TriadChord {
+    const [a, b, c] = tonnetz;
+    disorderedTriad.sort((x, y) => x - y);
     const temp: TriadChord = [...disorderedTriad];
 
-    if (Math.abs(disorderedTriad[1] - disorderedTriad[0]) === 5) {
+    if (Math.abs(disorderedTriad[1] - disorderedTriad[0]) === c) {
         disorderedTriad[0] = temp[1];
         disorderedTriad[1] = temp[2];
         disorderedTriad[2] = temp[0];
     }
-    if (Math.abs(disorderedTriad[2] - disorderedTriad[1]) === 5) {
+    if (Math.abs(disorderedTriad[2] - disorderedTriad[1]) === c) {
         disorderedTriad[0] = temp[2];
         disorderedTriad[1] = temp[0];
         disorderedTriad[2] = temp[1];
@@ -137,7 +138,7 @@ export const parallelTransform: TransformationFunctions = (chordFromTonnetz, ton
     const p: number = (a - b);
 
     const reduceModN = chordNotesToModN(chordFromTonnetz);
-    const rootPositionTriad = sortingTriadChord(reduceModN);
+    const rootPositionTriad = sortingTriadChord(reduceModN, tonnetz);
     const transformedChord: TriadChord = [...rootPositionTriad];
 
     if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
@@ -155,7 +156,7 @@ export const leadingToneTransform: TransformationFunctions = (chordFromTonnetz, 
     const l: number = (b - c);
 
     const reduceModN = chordNotesToModN(chordFromTonnetz);
-    const rootPositionTriad = sortingTriadChord(reduceModN);
+    const rootPositionTriad = sortingTriadChord(reduceModN, tonnetz);
     const transformedChord: TriadChord = [...rootPositionTriad];
     if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
         transformedChord[2] -= l;
@@ -172,7 +173,7 @@ export const relativeTransform: TransformationFunctions = (chordFromTonnetz, ton
     const r: number = (a - c)
 
     const reduceModN = chordNotesToModN(chordFromTonnetz);
-    const rootPositionTriad = sortingTriadChord(reduceModN);
+    const rootPositionTriad = sortingTriadChord(reduceModN, tonnetz);
     const transformedChord: TriadChord = [...rootPositionTriad];
     if (transformedChord[1] % modulo !== (transformedChord[0] + b) % modulo) {
         transformedChord[0] += r;
@@ -194,7 +195,7 @@ export const CHORD_TYPES: ChordGenerators = {
     "aug": augmentedTriadChord,
     "augmented": augmentedTriadChord,
     "dim7": diminishedSeventhChord
-};
+}
 
 export const chordFromTonnetz = (rootNote: number, chordType: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord | Tetrachord => {
     return CHORD_TYPES[chordType](rootNote, tonnetz);
@@ -204,7 +205,7 @@ export const TRANSFORMATIONS: ObjectTransformations = {
     "p": parallelTransform,
     "l": leadingToneTransform,
     "r": relativeTransform,
-};
+}
 
 export const transform = (chord: TriadChord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord => {
     const transformations = transformation.split("");
