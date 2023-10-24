@@ -4,7 +4,11 @@ TypeScriptTonnetz is a set of functions and operations from Mathematical Music T
 
 It emerged as a development branch to contribute to Miika Alonen's phenomenal ZiffersJS project.
 
+
 ## Features implemented
+
+Transformations and functions follow the edge flip between triangles and geometries (so far), so they maintain two common notes (not necessarily voice-leading considerations). In other words, diferent Tonnetz Spaces follow the voice-leading spaces geometry of the conventional Tonnetz.
+
 * [x] PRL functions
 * [x] HexaCycles
 * [x] OctaCycles
