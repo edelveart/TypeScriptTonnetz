@@ -2,7 +2,8 @@
 
 TypeScriptTonnetz is a set of functions and operations from Mathematical Music Theory (transformational approach) in Typescript. Specifically, it deals with Tonnetz spaces and functions related to the topic.
 
-It emerged as a development branch to contribute to Miika Alonen's phenomenal ZiffersJS project.
+It emerged as a development branch to contribute to Miika Alonen's phenomenal [ZifferJS](https://github.com/amiika/zifferjs) project.
+
 
 
 ## Features implemented
