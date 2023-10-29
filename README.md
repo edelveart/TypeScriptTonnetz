@@ -51,6 +51,6 @@ COMMIT "cbd4f62" has code by Miika Alonen = {
 
 -  New features (`feat: <...>` )
 -  Fix errors and bugs (`fix: <...>`)
--  Refactor (`refactor: `)
+-  Refactor (`refactor: <...>`)
 -  Testing (`test: <...>`)
 -  Documentation (`docs: <...>`)
