@@ -16,8 +16,7 @@ Transformations and functions follow the edge flip between triangles and their g
 
 Mathematical inspiration (`Trajectoires`) in the thesis:
 ```
-Représentations symboliques musicales et calcul spatial.
-(Louis Bigo, 2013)
+Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
 ```
 
 ## Dual geometry of the Tonnetz
@@ -34,7 +33,7 @@ Mathematical inspiration in the paper:
 ```
 A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
-(Sonia Cannas & Moreno Andreatta, 2018).
+(Sonia Cannas and Moreno Andreatta, 2018).
 ```
 
 ## Observation
