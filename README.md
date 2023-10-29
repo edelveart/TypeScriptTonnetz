@@ -47,3 +47,10 @@ COMMIT "cbd4f62" has code by Miika Alonen = {
 -  Function: transform (line 172)
 }
 ```
+## Contributing
+
+-  New features (`feat: <...>` )
+-  Fix errors and bugs (`fix: <...>`)
+-  Refactor (`refactor: `)
+-  Testing (`test: <...>`)
+-  Documentation (`docs: <...>`)
