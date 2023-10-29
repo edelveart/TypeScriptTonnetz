@@ -316,9 +316,9 @@ export const r12: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = minorSeventhChord(transformedChord[0] - 3, tonnetz)
+        transformedChord = minorSeventhChord(transformedChord[0] - a, tonnetz)
     } else {
-        transformedChord = dominantSeventChord(transformedChord[0] + 3, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] + a, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -336,9 +336,9 @@ export const r23: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = halfDiminishedChord(transformedChord[0] - 3, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] - a, tonnetz)
     } else {
-        transformedChord = minorSeventhChord(transformedChord[0] + 3, tonnetz)
+        transformedChord = minorSeventhChord(transformedChord[0] + a, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -356,9 +356,9 @@ export const r42: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = minorSeventhChord(transformedChord[0] - 3, tonnetz)
+        transformedChord = minorSeventhChord(transformedChord[0] - a, tonnetz)
     } else {
-        transformedChord = majorSeventhChord(transformedChord[0] + 3, tonnetz)
+        transformedChord = majorSeventhChord(transformedChord[0] + a, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -376,9 +376,9 @@ export const r35: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = diminishedSeventhChord(transformedChord[0] - 3, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] - a, tonnetz)
     } else {
-        transformedChord = halfDiminishedChord(transformedChord[0] + 3, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] + a, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -396,9 +396,9 @@ export const r53: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = halfDiminishedChord(transformedChord[0] - 3, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] - a, tonnetz)
     } else {
-        transformedChord = diminishedSeventhChord(transformedChord[0] + 3, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] + a, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -416,9 +416,9 @@ export const l13: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = halfDiminishedChord(transformedChord[0] + 4, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] + b, tonnetz)
     } else {
-        transformedChord = dominantSeventChord(transformedChord[0] - 4, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] - b, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -436,9 +436,9 @@ export const l15: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = diminishedSeventhChord(transformedChord[0] + 4, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] + b, tonnetz)
     } else {
-        transformedChord = dominantSeventChord(transformedChord[0] - 4, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] - b, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -456,9 +456,9 @@ export const l42: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = minorSeventhChord(transformedChord[0] + 4, tonnetz)
+        transformedChord = minorSeventhChord(transformedChord[0] + b, tonnetz)
     } else {
-        transformedChord = majorSeventhChord(transformedChord[0] - 4, tonnetz)
+        transformedChord = majorSeventhChord(transformedChord[0] - b, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -476,9 +476,9 @@ export const q43: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = halfDiminishedChord(transformedChord[0] + 1, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] + (b - a), tonnetz)
     } else {
-        transformedChord = majorSeventhChord(transformedChord[0] - 1, tonnetz)
+        transformedChord = majorSeventhChord(transformedChord[0] - (b - a), tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -496,9 +496,9 @@ export const q15: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = diminishedSeventhChord(transformedChord[0] + 1, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] + (b - a), tonnetz)
     } else {
-        transformedChord = dominantSeventChord(transformedChord[0] - 1, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] - (b - a), tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -516,9 +516,9 @@ export const rr35: TransformationFunctionsSeventhChords = (chordFromTonnetz, ton
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = diminishedSeventhChord(transformedChord[0] + 6, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] + (2 * a), tonnetz)
     } else {
-        transformedChord = halfDiminishedChord(transformedChord[0] - 6, tonnetz)
+        transformedChord = halfDiminishedChord(transformedChord[0] - (2 * a), tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -536,9 +536,9 @@ export const qq51: TransformationFunctionsSeventhChords = (chordFromTonnetz, ton
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = dominantSeventChord(transformedChord[0] + 2, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] + (c - a), tonnetz)
     } else {
-        transformedChord = diminishedSeventhChord(transformedChord[0] - 2, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] - (c - a), tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
@@ -556,9 +556,9 @@ export const n51: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonn
 
     let transformedChord: Tetrachord = [...reduceModN];
     if (equalToChordOne) {
-        transformedChord = dominantSeventChord(transformedChord[0] + 5, tonnetz)
+        transformedChord = dominantSeventChord(transformedChord[0] + c, tonnetz)
     } else {
-        transformedChord = diminishedSeventhChord(transformedChord[0] - 5, tonnetz)
+        transformedChord = diminishedSeventhChord(transformedChord[0] - c, tonnetz)
     }
     const targetTetraChord = chordNotesToModN(transformedChord, modulo);
     return targetTetraChord;
