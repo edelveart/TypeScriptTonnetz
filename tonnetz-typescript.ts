@@ -203,6 +203,86 @@ export const relativeTransform: TransformationFunctions = (chordFromTonnetz, ton
     return targetTriadChord;
 }
 
+export const f: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const f: number = (a + b)
+
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
+    if (rootPositionTriad[1] % modulo === (rootPositionTriad[0] + b) % modulo) {
+        rootPositionTriad = minorChordFromTonnetz(rootPositionTriad[0] + f, tonnetz);
+    } else {
+        rootPositionTriad = majorChordFromTonnetz(rootPositionTriad[0] - f, tonnetz);
+    }
+    const targetTriadChord = chordNotesToModN(rootPositionTriad, modulo);
+    return targetTriadChord;
+}
+
+export const n: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const n: number = c;
+
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
+    if (rootPositionTriad[1] % modulo === (rootPositionTriad[0] + b) % modulo) {
+        rootPositionTriad = minorChordFromTonnetz(rootPositionTriad[0] + n, tonnetz);
+    } else {
+        rootPositionTriad = majorChordFromTonnetz(rootPositionTriad[0] - n, tonnetz);
+    }
+    const targetTriadChord = chordNotesToModN(rootPositionTriad, modulo);
+    return targetTriadChord;
+}
+
+export const s: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const s: number = (b - a);
+
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
+    if (rootPositionTriad[1] % modulo === (rootPositionTriad[0] + b) % modulo) {
+        rootPositionTriad = minorChordFromTonnetz(rootPositionTriad[0] + s, tonnetz);
+    } else {
+        rootPositionTriad = majorChordFromTonnetz(rootPositionTriad[0] - s, tonnetz);
+    }
+    const targetTriadChord = chordNotesToModN(rootPositionTriad, modulo);
+    return targetTriadChord;
+}
+
+export const h: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const h: number = (2 * b);
+
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
+    if (rootPositionTriad[1] % modulo === (rootPositionTriad[0] + b) % modulo) {
+        rootPositionTriad = minorChordFromTonnetz(rootPositionTriad[0] + h, tonnetz);
+    } else {
+        rootPositionTriad = majorChordFromTonnetz(rootPositionTriad[0] - h, tonnetz);
+    }
+    const targetTriadChord = chordNotesToModN(rootPositionTriad, modulo);
+    return targetTriadChord;
+}
+
+export const t: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const h: number = (2 * a);
+
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+    let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
+    if (rootPositionTriad[1] % modulo === (rootPositionTriad[0] + b) % modulo) {
+        rootPositionTriad = majorChordFromTonnetz(rootPositionTriad[0] + h, tonnetz);
+    } else {
+        rootPositionTriad = minorChordFromTonnetz(rootPositionTriad[0] - h, tonnetz);
+    }
+    const targetTriadChord = chordNotesToModN(rootPositionTriad, modulo);
+    return targetTriadChord;
+}
+
 export const firstChordComparison = (reduceModN: Tetrachord, compareOne: Tetrachord): boolean => {
     const firstChordCompare = reduceModN.map((item, index) => item === compareOne[index]);
     const equalFirstChord: boolean = firstChordCompare.every(item => item === true);
@@ -586,6 +666,11 @@ export const TRANSFORMATIONS: ObjectTransformations = {
     "p": parallelTransform,
     "l": leadingToneTransform,
     "r": relativeTransform,
+    "f": f,
+    "n": n,
+    "s": s,
+    "h": h,
+    "t": t
 }
 
 export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
@@ -608,18 +693,6 @@ export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
     "n51": n51
 }
 
-export const seventhsTransform = (chord: Tetrachord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): Tetrachord => {
-    const transformations = transformation.split("-");
-    let transformedChord: Tetrachord = [...chord];
-    for (let i = 0; i < transformations.length; i++) {
-        const validTransformation = transformations[i];
-        if (validTransformation) {
-            transformedChord = SEVENTHSTRANFORMATIONS[validTransformation](transformedChord, tonnetz);
-        }
-    }
-    return transformedChord;
-}
-
 export const transform = (chord: TriadChord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord => {
     const transformations = transformation.split("");
     let transformedChord: TriadChord = [...chord];
@@ -630,6 +703,18 @@ export const transform = (chord: TriadChord, transformation: string, tonnetz: To
         }
     }
     return sortingTriadChord(transformedChord, tonnetz);
+}
+
+export const seventhsTransform = (chord: Tetrachord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): Tetrachord => {
+    const transformations = transformation.split("-");
+    let transformedChord: Tetrachord = [...chord];
+    for (let i = 0; i < transformations.length; i++) {
+        const validTransformation = transformations[i];
+        if (validTransformation) {
+            transformedChord = SEVENTHSTRANFORMATIONS[validTransformation](transformedChord, tonnetz);
+        }
+    }
+    return transformedChord;
 }
 
 export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: number = 3): TriadChord[] => {
