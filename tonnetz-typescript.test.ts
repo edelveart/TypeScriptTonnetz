@@ -251,7 +251,6 @@ describe('tonnetz-tests', () => {
     })
 
     it('tonnetzTransformations "complex" compositions to "normal form"', () => {
-
         expect(transform([0, 4, 7], "plprlplrl")).toEqual([2, 5, 9]);
         expect(transform([1, 5, 8], "plprlplrl")).toEqual([3, 6, 10]);
         expect(transform([2, 6, 9], "plprlplrl")).toEqual([4, 7, 11]);
@@ -279,6 +278,96 @@ describe('tonnetz-tests', () => {
         expect(transform([11, 2, 6], "plprlplrl")).toEqual([9, 1, 4]);
     })
 
+    it('tonnetzTransformations "f" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "f")).toEqual([7, 10, 2]);
+        expect(transform([0, 4, 7], "ff")).toEqual([0, 4, 7]);
+
+        expect(transform([9, 0, 4], "f")).toEqual([2, 6, 9]);
+        expect(transform([9, 0, 4], "ff")).toEqual([9, 0, 4]);
+
+        expect(transform([2, 6, 9], "f")).toEqual([9, 0, 4]);
+        expect(transform([2, 5, 9], "f")).toEqual([7, 11, 2]);
+        expect(transform([10, 2, 5], "f")).toEqual([5, 8, 0]);
+        expect(transform([5, 9, 0], "f")).toEqual([0, 3, 7]);
+        expect(transform([4, 7, 11], "f")).toEqual([9, 1, 4]);
+    })
+
+    it('tonnetzTransformations "n" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "n")).toEqual([5, 8, 0]);
+        expect(transform([0, 4, 7], "nn")).toEqual([0, 4, 7]);
+
+        expect(transform([0, 3, 7], "n")).toEqual([7, 11, 2]);
+        expect(transform([0, 3, 7], "nn")).toEqual([0, 3, 7]);
+
+        expect(transform([7, 11, 2], "n")).toEqual([0, 3, 7]);
+        expect(transform([9, 0, 4], "n")).toEqual([4, 8, 11]);
+        expect(transform([5, 9, 0], "n")).toEqual([10, 1, 5]);
+        expect(transform([2, 6, 9], "n")).toEqual([7, 10, 2]);
+        expect(transform([2, 5, 9], "n")).toEqual([9, 1, 4]);
+    })
+
+    it('tonnetzTransformations "s" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "s")).toEqual([1, 4, 8]);
+        expect(transform([0, 4, 7], "ss")).toEqual([0, 4, 7]);
+
+        expect(transform([0, 3, 7], "s")).toEqual([11, 3, 6]);
+        expect(transform([0, 3, 7], "ss")).toEqual([0, 3, 7]);
+
+        expect(transform([7, 11, 2], "s")).toEqual([8, 11, 3]);
+        expect(transform([9, 0, 4], "s")).toEqual([8, 0, 3]);
+        expect(transform([5, 9, 0], "s")).toEqual([6, 9, 1]);
+        expect(transform([2, 6, 9], "s")).toEqual([3, 6, 10]);
+        expect(transform([2, 5, 9], "s")).toEqual([1, 5, 8]);
+    })
+
+    it('tonnetzTransformations "h" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "h")).toEqual([8, 11, 3]);
+        expect(transform([0, 4, 7], "hh")).toEqual([0, 4, 7]);
+
+        expect(transform([0, 3, 7], "h")).toEqual([4, 8, 11]);
+        expect(transform([0, 3, 7], "hh")).toEqual([0, 3, 7]);
+
+        expect(transform([7, 11, 2], "h")).toEqual([3, 6, 10]);
+        expect(transform([9, 0, 4], "h")).toEqual([1, 5, 8]);
+        expect(transform([5, 9, 0], "h")).toEqual([1, 4, 8]);
+        expect(transform([2, 6, 9], "h")).toEqual([10, 1, 5]);
+        expect(transform([2, 5, 9], "h")).toEqual([6, 10, 1]);
+    })
+
+    it('tonnetzTransformations "t" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "t")).toEqual([6, 10, 1]);
+        expect(transform([0, 4, 7], "tt")).toEqual([0, 4, 7]);
+
+        expect(transform([0, 3, 7], "t")).toEqual([6, 9, 1]);
+        expect(transform([0, 3, 7], "tt")).toEqual([0, 3, 7]);
+
+        expect(transform([7, 11, 2], "t")).toEqual([1, 5, 8]);
+        expect(transform([9, 0, 4], "t")).toEqual([3, 6, 10]);
+        expect(transform([5, 9, 0], "t")).toEqual([11, 3, 6]);
+        expect(transform([2, 6, 9], "t")).toEqual([8, 0, 3]);
+        expect(transform([2, 5, 9], "t")).toEqual([8, 11, 3]);
+    })
+
+    it('tonnetzTransformations "pt6, lt6, rt6" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "pt")).toEqual([6, 9, 1]);
+        expect(transform([0, 4, 7], "lt")).toEqual([10, 1, 5]);
+        expect(transform([0, 4, 7], "rt")).toEqual([3, 6, 10]);
+
+        expect(transform([0, 3, 7], "pt")).toEqual([6, 10, 1]);
+        expect(transform([0, 3, 7], "lt")).toEqual([2, 6, 9]);
+        expect(transform([0, 3, 7], "rt")).toEqual([9, 1, 4]);
+    })
+
+    it('tonnetzTransformations "compositions" function to "normal form"', () => {
+        expect(transform([0, 4, 7], "hsf")).toEqual([2, 5, 9]);
+        expect(transform([0, 3, 7], "hsf")).toEqual([10, 2, 5]);
+
+        expect(transform([0, 4, 7], "hsftn")).toEqual([3, 7, 10]);
+        expect(transform([0, 3, 7], "hsftn")).toEqual([9, 0, 4]);
+
+        expect(transform([0, 4, 7], "hsftnprpl")).toEqual([2, 6, 9]);
+        expect(transform([0, 3, 7], "hsftnprpl")).toEqual([10, 1, 5]);
+    })
 });
 
 
