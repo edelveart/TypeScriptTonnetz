@@ -12,8 +12,7 @@ Transformations and functions follow the edge flip between triangles and their g
 -   [x] PRL functions and compositions of any length
 -   [x] Functions: `f(), n(), s(), h(), t()`
 -   [x] HexaCycles, OctaCycles, EnneaCycles
--   [x] Weitzmann Regions, Boretz Regions
--   [x] OctaTowers
+-   [x] Weitzmann Regions, Boretz Regions, OctaTowers
 
 Mathematical inspiration (`Trajectoires`) in the thesis:
 ```
