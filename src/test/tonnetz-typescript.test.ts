@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegionsTwo, octaTowerLeft, octaTowerRight, octaTowersTwo, transform, weitzmannRegionsTwo } from '../tonnetz-typescript';
+import { boretzRegionsTwo, enneaCycles, hexaCycles, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, seventhsTransform, transform, weitzmannRegionsTwo } from '../tonnetz-typescript';
 
 
 describe('tonnetz-tests', () => {
@@ -370,7 +370,7 @@ describe('tonnetz-tests', () => {
         expect(transform([0, 3, 7], "hsftnprpl")).toEqual([10, 1, 5]);
     })
 
-    it('octatowers', () => {
+    it('octaTowers', () => {
         expect(octaTowersTwo(0)).toEqual([
             [0, 3, 6, 10], [0, 3, 7, 10],
             [3, 7, 10, 1], [9, 0, 3, 7],
@@ -389,7 +389,7 @@ describe('tonnetz-tests', () => {
         ]);
     })
 
-    it('octatowers left and right', () => {
+    it('octaTowers left and right', () => {
         expect(octaTowerLeft(0)).toEqual([
             [0, 3, 6, 10], [0, 3, 7, 10],
             [0, 4, 7, 10], [9, 0, 3, 7],
@@ -428,49 +428,99 @@ describe('tonnetz-tests', () => {
 
     it('Weitzmann Regions', () => {
         expect(weitzmannRegionsTwo(0)).toEqual([
-            [0, 4, 8],
-            [1, 4, 8],
-            [5, 8, 0],
-            [9, 0, 4],
-            [0, 4, 7],
-            [8, 0, 3],
+            [0, 4, 8], [1, 4, 8],
+            [5, 8, 0], [9, 0, 4],
+            [0, 4, 7], [8, 0, 3],
             [4, 8, 11]
         ]);
         expect(weitzmannRegionsTwo(2)).toEqual([
-            [2, 6, 10],
-            [3, 6, 10],
-            [7, 10, 2],
-            [11, 2, 6],
-            [2, 6, 9],
-            [10, 2, 5],
+            [2, 6, 10], [3, 6, 10],
+            [7, 10, 2], [11, 2, 6],
+            [2, 6, 9], [10, 2, 5],
             [6, 10, 1]
         ]);
     });
 
     it('Boretz Regions', () => {
         expect(boretzRegionsTwo(0)).toEqual([
-            [0, 3, 6, 9],
-            [11, 3, 6, 9],
-            [3, 6, 9, 1],
-            [2, 6, 9, 0],
-            [6, 9, 0, 4],
-            [5, 9, 0, 3],
-            [9, 0, 3, 7],
-            [8, 0, 3, 6],
+            [0, 3, 6, 9], [11, 3, 6, 9],
+            [3, 6, 9, 1], [2, 6, 9, 0],
+            [6, 9, 0, 4], [5, 9, 0, 3],
+            [9, 0, 3, 7], [8, 0, 3, 6],
             [0, 3, 6, 10]
         ]);
 
         expect(boretzRegionsTwo(2)).toEqual([
-            [2, 5, 8, 11],
-            [1, 5, 8, 11],
-            [5, 8, 11, 3],
-            [4, 8, 11, 2],
-            [8, 11, 2, 6],
-            [7, 11, 2, 5],
-            [11, 2, 5, 9],
-            [10, 2, 5, 8],
-            [2, 5, 8, 0]
+            [2, 5, 8, 11], [1, 5, 8, 11],
+            [5, 8, 11, 3], [4, 8, 11, 2],
+            [8, 11, 2, 6], [7, 11, 2, 5],
+            [11, 2, 5, 9], [10, 2, 5, 8],
+            [2, 5, 8, 0]]);
+    });
+
+    it('HexaCycles', () => {
+        expect(hexaCycles(0, [3, 4, 5])).toEqual([[0, 4, 7], [0, 3, 7],
+        [8, 0, 3], [8, 11, 3],
+        [4, 8, 11], [4, 7, 11]
+        ]);
+        expect(hexaCycles(9, [3, 4, 5])).toEqual([[9, 1, 4], [9, 0, 4],
+        [5, 9, 0], [5, 8, 0],
+        [1, 5, 8], [1, 4, 8]
         ]);
     });
 
+    it('OctaCycles', () => {
+        expect(octaCycles(2, [3, 4, 5])).toEqual([
+            [2, 6, 9], [2, 5, 9],
+            [5, 9, 0], [5, 8, 0],
+            [8, 0, 3], [8, 11, 3],
+            [11, 3, 6], [11, 2, 6]
+        ]);
+        expect(octaCycles(0, [3, 4, 5])).toEqual([
+            [0, 4, 7], [0, 3, 7],
+            [3, 7, 10], [3, 6, 10],
+            [6, 10, 1], [6, 9, 1],
+            [9, 1, 4], [9, 0, 4]
+        ]);
+    });
+
+    it('EnneaCycles', () => {
+        expect(enneaCycles(0, [3, 4, 5])).toEqual([
+            [0, 4, 7, 10], [0, 3, 7, 10], [0, 3, 6, 10],
+            [8, 0, 3, 6], [8, 11, 3, 6], [8, 11, 2, 6],
+            [4, 8, 11, 2], [4, 7, 11, 2], [4, 7, 10, 2]
+        ]);
+        expect(enneaCycles(9, [3, 4, 5])).toEqual([
+            [9, 1, 4, 7], [9, 0, 4, 7], [9, 0, 3, 7],
+            [5, 9, 0, 3], [5, 8, 0, 3], [5, 8, 11, 3],
+            [1, 5, 8, 11], [1, 4, 8, 11], [1, 4, 7, 11]
+        ]);
+    });
+
+    it('seventhTransformations to normal form. Returns the same chord if the transformation is not supported.', () => {
+
+        expect(seventhsTransform([0, 4, 7, 10], "p12")).toEqual([0, 3, 7, 10])
+        expect(seventhsTransform([0, 4, 7, 10], "p14")).toEqual([0, 4, 7, 11])
+        expect(seventhsTransform([0, 4, 7, 10], "r12")).toEqual([9, 0, 4, 7])
+        expect(seventhsTransform([0, 4, 7, 10], "l13")).toEqual([4, 7, 10, 2])
+        expect(seventhsTransform([0, 4, 7, 10], "l15")).toEqual([4, 7, 10, 1])
+        expect(seventhsTransform([0, 4, 7, 10], "q15")).toEqual([1, 4, 7, 10])
+
+        expect(seventhsTransform([0, 4, 7, 10], "l42")).toEqual([0, 4, 7, 10])
+        expect(seventhsTransform([0, 3, 7, 10], "q43")).toEqual([0, 3, 7, 10])
+        expect(seventhsTransform([0, 4, 7, 11], "rr35")).toEqual([0, 4, 7, 11])
+        expect(seventhsTransform([0, 3, 6, 9], "l42")).toEqual([0, 3, 6, 9])
+        expect(seventhsTransform([0, 3, 6, 10], "qq51")).toEqual([0, 3, 6, 10])
+        expect(seventhsTransform([0, 4, 7, 10], "p35")).toEqual([0, 4, 7, 10])
+
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42")).toEqual([9, 0, 4, 7])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42")).toEqual([5, 9, 0, 4])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43")).toEqual([6, 9, 0, 4])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35")).toEqual([0, 3, 6, 9])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51")).toEqual([2, 6, 9, 0])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15")).toEqual([6, 9, 0, 3])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15n51")).toEqual([11, 3, 6, 9])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15n51l13")).toEqual([3, 6, 9, 1])
+        expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15n51l13r23")).toEqual([6, 9, 1, 4])
+    })
 })
