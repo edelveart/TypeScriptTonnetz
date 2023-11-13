@@ -806,25 +806,19 @@ export const octaTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5],
     return octaTowerMatrix;
 }
 
-export const octaTowersTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[][] => {
+export const octaTowersTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
     const [a] = tonnetz;
-    const octaLeft: Tetrachord[] = [];
-    const octaCenter: Tetrachord[] = [];
-    const octaRight: Tetrachord[] = [];
+    const octaTowerMatrix: Tetrachord[] = [];
     for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
         const baseNote = rootNote + index;
         const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
         const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
         const rightDominant7 = chordNotesToModN(dominantSeventChord(baseNote + a, tonnetz));
-        octaLeft.push(leftHalfDim7);
-        octaCenter.push(centerMinor7);
-        octaRight.push(rightDominant7);
+        octaTowerMatrix.push(leftHalfDim7, centerMinor7, rightDominant7);
     }
-    const octaTowerMatrix: Tetrachord[][] = [];
-    octaTowerMatrix.push(octaLeft, octaCenter, octaRight);
     return octaTowerMatrix;
 }
-
+console.log(octaTowersTwo(2));
 export const diagAscOctaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[][] => {
     const [a] = tonnetz;
     const octaLeft: Tetrachord[] = [];
@@ -843,6 +837,7 @@ export const diagAscOctaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 
     octaTowerMatrix.push(octaLeft, octaCenter, octaRight);
     return octaTowerMatrix;
 }
+
 
 export const diagDescOctaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[][] => {
     const [a] = tonnetz;
