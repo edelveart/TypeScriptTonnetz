@@ -44,9 +44,15 @@ COMMIT "cbd4f62" has code by Miika Alonen = {
 -  Type: ChordGenerators (line 17),
 -  Object: CHORD_TYPES (line 150),
 -  Function: chordFromTonnetz (line 162),
--  Function: transform (line 172)
 }
+
+COMMIT "f3b21a0" has code by Miika Alonen = {
+-  Function: seventhsTransform (line 721,722,723)
+}
+
+I change the `RegExp: (/([a-z][0-9]*)/g)` of line `721` with the new one `(/([a-z]{1,2}[0-9]*)/g)`
 ```
+
 ## Contributing
 
 -  New features (`feat: <...>` )
