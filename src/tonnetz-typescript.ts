@@ -18,6 +18,12 @@ export type ObjectTransformationsSeventhChords = {
     [key: string]: TransformationFunctionsSeventhChords
 }
 
+export type TransformationTriadSeventhChords = (chord: TriadChord | Tetrachord, tonnetz: TonnetzSpaces) => TriadChord | Tetrachord;
+
+export type ObjectTransformationsTriadSeventhChords = {
+    [key: string]: TransformationTriadSeventhChords
+}
+
 export type ChordGenerationFunctions = (rootNote: number, tonnetz: TonnetzSpaces) => TriadChord | Tetrachord;
 
 export type ChordGenerators = {
@@ -349,12 +355,18 @@ export const t: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChor
 }
 
 export const firstChordComparison = (reduceModN: TriadChord | Tetrachord, compareOne: TriadChord | Tetrachord): boolean => {
+    if (reduceModN.length !== compareOne.length) {
+        return false;
+    }
     const firstChordCompare = reduceModN.map((item, index) => item === compareOne[index]);
     const equalFirstChord: boolean = firstChordCompare.every(item => item === true);
     return equalFirstChord;
 }
 
 export const secondChordComparison = (reduceModN: TriadChord | Tetrachord, compareTwo: TriadChord | Tetrachord): boolean => {
+    if (reduceModN.length !== compareTwo.length) {
+        return false;
+    }
     const secondChordCompare = reduceModN.map((item, index) => item === compareTwo[index]);
     const equalSecondChord: boolean = secondChordCompare.every(item => item === true);
     return equalSecondChord;
@@ -1333,6 +1345,246 @@ export const rt23: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadC
     return targetTetraChord;
 }
 
+export const p1M: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, dominantSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = majorChordFromTonnetz(transformedChord[0], tonnetz)
+    } else {
+        transformedChord = dominantSeventhChord(transformedChord[0], tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const l1d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, dominantSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0] + b, tonnetz)
+    } else {
+        transformedChord = dominantSeventhChord(transformedChord[0] - b, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const p2m: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, minorSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = minorChordFromTonnetz(transformedChord[0], tonnetz)
+    } else {
+        transformedChord = minorSeventhChord(transformedChord[0], tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const r2M: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, minorSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = majorChordFromTonnetz(transformedChord[0] + a, tonnetz)
+    } else {
+        transformedChord = minorSeventhChord(transformedChord[0] - a, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const p3d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, halfDiminishedChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0], tonnetz)
+    } else {
+        transformedChord = halfDiminishedChord(transformedChord[0], tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const r3m: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, halfDiminishedChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = minorChordFromTonnetz(transformedChord[0] + a, tonnetz)
+    } else {
+        transformedChord = halfDiminishedChord(transformedChord[0] - a, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const p4M: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, majorSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = majorChordFromTonnetz(transformedChord[0], tonnetz)
+    } else {
+        transformedChord = majorSeventhChord(transformedChord[0], tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const l4m: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, majorSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = minorChordFromTonnetz(transformedChord[0] + b, tonnetz)
+    } else {
+        transformedChord = majorSeventhChord(transformedChord[0] - b, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const p5d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, diminishedSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0], tonnetz)
+    } else {
+        transformedChord = diminishedSeventhChord(transformedChord[0], tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const r5d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, diminishedSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0] + a, tonnetz)
+    } else {
+        transformedChord = diminishedSeventhChord(transformedChord[0] - a, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const rr5d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, diminishedSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0] + 2 * a, tonnetz)
+    } else {
+        transformedChord = diminishedSeventhChord(transformedChord[0] - 2 * a, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
+export const z5d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+    const equalToChordOne = firstChordComparison(reduceModN, diminishedSeventhChord(reduceModN[0], tonnetz))
+    const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz))
+
+    if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+    let transformedChord: TriadChord | Tetrachord = [...reduceModN];
+    if (equalToChordOne) {
+        transformedChord = diminishedTriadChord(transformedChord[0] - a, tonnetz)
+    } else {
+        transformedChord = diminishedSeventhChord(transformedChord[0] + a, tonnetz)
+    }
+    const targetTetraChord = chordNotesToModN(transformedChord, modulo);
+    return targetTetraChord;
+}
+
 export const CHORD_TYPES: ChordGenerators = {
     "M": majorChordFromTonnetz,
     "maj": majorChordFromTonnetz,
@@ -1413,6 +1665,21 @@ export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
     "rr98": rr98,
     "qq38": qq38,
     "qq98": qq98
+}
+
+export const STTRANSFORMATIONS: ObjectTransformationsTriadSeventhChords = {
+    "p1M": p1M,
+    "l1d": l1d,
+    "p2m": p2m,
+    "r2M": r2M,
+    "p3d": p3d,
+    "r3m": r3m,
+    "p4M": p4M,
+    "l4m": l4m,
+    "p5d": p5d,
+    "r5d": r5d,
+    "rr5d": rr5d,
+    "z5d": z5d
 }
 
 export const transform = (chord: TriadChord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord => {
