@@ -1,3 +1,5 @@
+import { c } from "vitest/dist/reporters-5f784f42"
+
 export type TonnetzSpaceConnected = [3, 4, 5] | [1, 1, 10] | [1, 2, 9] | [1, 3, 8] | [1, 4, 7] | [1, 5, 6] | [2, 3, 7] | [2, 5, 5]
 export type TonnetzSpaceNonConnected = [2, 4, 6] | [2, 2, 8] | [3, 3, 6] | [4, 4, 4]
 
@@ -1604,6 +1606,18 @@ export const CHORD_TYPES: ChordGenerators = {
     "dom7b5": flatFiveDominantSeventhChord
 }
 
+export const CHORD_TYPES_SEVENTHS: ChordGenerators = {
+    "maj7": majorSeventhChord,
+    "7": dominantSeventhChord,
+    "m7": minorSeventhChord,
+    "hdim7": halfDiminishedChord,
+    "dim7": diminishedSeventhChord,
+    "minMaj7": minorMajorSeventhChord,
+    "maj7aug5": augmentedMajorSeventhChord,
+    "dom7aug5": sharpFiveDominantSeventhChord,
+    "dom7b5": flatFiveDominantSeventhChord
+}
+
 export const chordFromTonnetz = (rootNote: number, chordType: string, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord | Tetrachord => {
     return CHORD_TYPES[chordType](rootNote, tonnetz);
 }
@@ -1667,6 +1681,48 @@ export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
     "rr98": rr98,
     "qq38": qq38,
     "qq98": qq98
+}
+
+export const getAvailableTransform = (transformations: ObjectTransformationsSeventhChords, availableString: string): string[] => {
+    return Object.keys(transformations).filter(key => key.includes(availableString));
+}
+
+export const AVAILABLESEVENTHSTRANSFORMATIONS: { readonly [key: string]: readonly string[] } = {
+    "7": ['p12', 'p14', 'r12', 'l13', 'l15', 'q15', 'qq51', 'n51', 'p18', 'p19', 'l71', 'rr19'],
+    "m7": ['p12', 'p23', 'r12', 'r23', 'r42', 'l42', 'p26', 'q62'],
+    "hdim7": ['p23', 'p35', 'r23', 'r35', 'r53', 'l13', 'q43', 'rr35', 'p39', 'r63', 'qq38'],
+    "maj7": ['p14', 'r42', 'l42', 'q43', 'p47', 'p64'],
+    "dim7": ['p35', 'r35', 'r53', 'l15', 'q15', 'rr35', 'qq51', 'n51'],
+    "minMaj7": ['p26', 'p64', 'r63', 'r76', 'r86', 'q62', 'q76'],
+    "maj7aug5": ['p47', 'p87', 'r76', 'l71', 'q76'],
+    "dom7aug5": ['p18', 'p87', 'p98', 'r86', 'l89', 'rr98', 'qq38', 'qq98'],
+    "dom7b5": ['p19', 'p39', 'p98', 'l89', 'rr19', 'rr98', 'qq98']
+};
+
+export const getAvailableSeventhsTransformations = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): readonly string[] | string => {
+    for (const chordFunction of Object.keys(CHORD_TYPES_SEVENTHS)) {
+        let chordCompare = CHORD_TYPES_SEVENTHS[chordFunction](chord[0], tonnetz);
+        let arrayOfComparedValues: boolean[] = chord.map((item, index) => item === chordCompare[index]);
+        const isEachElementTrue: boolean = arrayOfComparedValues.every(item => item === true);
+        if (isEachElementTrue) {
+            return AVAILABLESEVENTHSTRANSFORMATIONS[chordFunction]
+        }
+    }
+    return `No transformations available`
+}
+
+export const randomSeventhTransformation = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): Tetrachord => {
+    for (const chordFunction of Object.keys(CHORD_TYPES_SEVENTHS)) {
+        let chordCompare = CHORD_TYPES_SEVENTHS[chordFunction](chord[0], tonnetz);
+        let arrayOfComparedValues: boolean[] = chord.map((item, index) => item === chordCompare[index]);
+        const isEachElementTrue: boolean = arrayOfComparedValues.every(item => item === true);
+        if (isEachElementTrue) {
+            const transformations = AVAILABLESEVENTHSTRANSFORMATIONS[chordFunction]
+            const randomTransformation = transformations[(Math.floor(Math.random() * transformations.length))]
+            return SEVENTHSTRANFORMATIONS[randomTransformation](chord, tonnetz)
+        }
+    }
+    return chord;
 }
 
 export const STTRANSFORMATIONS: ObjectTransformationsTriadSeventhChords = {
