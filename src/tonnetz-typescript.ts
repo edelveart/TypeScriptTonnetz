@@ -1678,6 +1678,7 @@ export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
     "q62": q62,
     "q76": q76,
     "rr19": rr19,
+    "rr39": rr39,
     "rr98": rr98,
     "qq38": qq38,
     "qq98": qq98
@@ -1690,13 +1691,13 @@ export const getAvailableTransform = (transformations: ObjectTransformationsSeve
 export const AVAILABLESEVENTHSTRANSFORMATIONS: { readonly [key: string]: readonly string[] } = {
     "7": ['p12', 'p14', 'r12', 'l13', 'l15', 'q15', 'qq51', 'n51', 'p18', 'p19', 'l71', 'rr19'],
     "m7": ['p12', 'p23', 'r12', 'r23', 'r42', 'l42', 'p26', 'q62'],
-    "hdim7": ['p23', 'p35', 'r23', 'r35', 'r53', 'l13', 'q43', 'rr35', 'p39', 'r63', 'qq38'],
+    "hdim7": ['p23', 'p35', 'r23', 'r35', 'r53', 'rr39', 'l13', 'q43', 'rr35', 'p39', 'r63', 'qq38'],
     "maj7": ['p14', 'r42', 'l42', 'q43', 'p47', 'p64'],
     "dim7": ['p35', 'r35', 'r53', 'l15', 'q15', 'rr35', 'qq51', 'n51'],
     "minMaj7": ['p26', 'p64', 'r63', 'r76', 'r86', 'q62', 'q76'],
     "maj7aug5": ['p47', 'p87', 'r76', 'l71', 'q76'],
     "dom7aug5": ['p18', 'p87', 'p98', 'r86', 'l89', 'rr98', 'qq38', 'qq98'],
-    "dom7b5": ['p19', 'p39', 'p98', 'l89', 'rr19', 'rr98', 'qq98']
+    "dom7b5": ['p19', 'p39', 'p98', 'l89', 'rr19', 'rr39', 'rr98', 'qq98']
 };
 
 export const getAvailableSeventhsTransformations = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): readonly string[] | string => {
@@ -1981,4 +1982,43 @@ export const boretzRegionsTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 
     arrayTargetSet.push(diminished7Chord, childChord1, childChord2, childChord3, childChord4, childChord5, childChord6, childChord7, childChord8);
 
     return arrayTargetSet;
+}
+
+export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [key: string]: readonly string[] } } = {
+    "M": {
+        "p": ['p1M', 'p4M'],
+        "r": ['r2M'],
+    },
+    "m": {
+        "p": ['p2m'],
+        "r": ['r3m'],
+        "l": ['l4m']
+    },
+    "diminished": {
+        "p": ['p3d', 'p5d'],
+        "r": ['r5d', 'rr5d'],
+        "l": ['l1d'],
+        "z": ['z5d'],
+    },
+    "7": {
+        "p": ['p1M'],
+        "l": ['l1d']
+    },
+    "min7": {
+        "p": ['p2m'],
+        "r": ['r2M'],
+    },
+    "hdim7": {
+        "p": ['p3d'],
+        "r": ['r3m'],
+    },
+    "maj7": {
+        "p": ['p4m'],
+        "l": ['l4m']
+    },
+    "dim7": {
+        "p": ["p5d"],
+        "r": ['r5d', 'rr5d'],
+        "z": ['z5d']
+    }
 }
