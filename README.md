@@ -58,7 +58,7 @@ Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
 
-## REMARK
+## Remark
 
 ```ts
 COMMIT "cbd4f62" has code by Miika Alonen = {
