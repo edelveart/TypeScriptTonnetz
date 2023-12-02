@@ -10,7 +10,7 @@ It emerged as a development branch to contribute to Miika Alonen's phenomenal [Z
 Transformations and functions follow the edge flip between triangles and their geometries (so far), so they maintain two common notes (not necessarily voice-leading considerations). In other words, diferent Tonnetz Spaces follow the voice-leading space geometry of the conventional Tonnetz.
 
 -   [x] PRL functions and compositions of any length
--   [x] Film music transformations: `f(), n(), s(), h(), t()`
+-   [x] Film music transformations: `f(), n(), s(), h(), t6()`
 -   [x] HexaCycles, OctaCycles, EnneaCycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
 
@@ -27,6 +27,26 @@ Features currently in development. These functions belong to the branch of gener
 -   [x] `r12, r23, r42, r35, r53`
 -   [x] `l13, l15, l42`
 -   [x] `q43, q15, rr35, qq51, n51`
+
+### Extended PLRQ
+
+Includes more types of seventh chords and their transformations between them.
+
+-   [x] `p18, p19, p26,  p39, p47, p64, p87, p98`
+-   [x] `r63, r76, r86, l71, l89, q62, q76`
+-   [x] `rr19, rr98, qq38, qq98`
+
+### *PLRQ-group
+
+Transformations with augmented and diminished triads.
+
+- [x] ` p, r, l, p32, p41, lt13, l41, l14, rt23, rt42, q13, q42, n42`
+
+### ST-group
+
+Transformations between triad chords and different types of seventh chords. The groups `PLRQ, *PLRQ` must be included.
+
+- [x]  ` p1M, l1d, p2m, r2M, p3d, r3m, p4M, l4m, p5d, r5d, rr5d, z5d`
 
 Mathematical inspiration in the paper:
 
