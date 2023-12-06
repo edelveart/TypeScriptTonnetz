@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegionsTwo, enneaCycles, hexaCycles, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, seventhsTransform, transform, weitzmannRegionsTwo } from '../tonnetz-typescript';
+import { boretzRegionsTwo, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegionsTwo, z5d } from '../tonnetz-typescript';
 
 
 describe('tonnetz-tests', () => {
@@ -379,10 +379,37 @@ describe('tonnetz-tests', () => {
         expect(transform([0, 4, 7], "7")).toEqual([1, 4, 7]);
         expect(transform([0, 4, 8], "8")).toEqual([1, 4, 8]);
         expect(transform([0, 4, 8], "10")).toEqual([5, 8, 0]);
-        // Not in normal form (problem with return transform():
+        // Not in normal form (problem with sorting in transform():
         expect(transform([9, 0, 3], "5")).toEqual([0, 3, 7]);
         expect(transform([0, 3, 7], "5")).toEqual([0, 3, 9]);
         expect(transform([0, 4, 7], "9")).toEqual([0, 4, 8]);
+    })
+
+    it('TonnetzTransformations PLRQ Extended functions to "normal form"', () => {
+        expect(p1M([0, 4, 7, 10], [3, 4, 5])).toEqual([0, 4, 7]);
+        expect(p1M([0, 4, 7], [3, 4, 5])).toEqual([0, 4, 7, 10]);
+        expect(l1d([0, 4, 7, 10], [3, 4, 5])).toEqual([4, 7, 10]);
+        expect(l1d([4, 7, 10], [3, 4, 5])).toEqual([0, 4, 7, 10]);
+        expect(p2m([0, 3, 7, 10], [3, 4, 5])).toEqual([0, 3, 7]);
+        expect(p2m([0, 3, 7], [3, 4, 5])).toEqual([0, 3, 7, 10]);
+        expect(r2M([0, 3, 7, 10], [3, 4, 5])).toEqual([3, 7, 10]);
+        expect(r2M([3, 7, 10], [3, 4, 5])).toEqual([0, 3, 7, 10]);
+        expect(p3d([0, 3, 6, 10], [3, 4, 5])).toEqual([0, 3, 6]);
+        expect(p3d([0, 3, 6], [3, 4, 5])).toEqual([0, 3, 6, 10]);
+        expect(r3m([0, 3, 6, 10], [3, 4, 5])).toEqual([3, 6, 10]);
+        expect(r3m([3, 6, 10], [3, 4, 5])).toEqual([0, 3, 6, 10]);
+        expect(p4M([0, 4, 7, 11], [3, 4, 5])).toEqual([0, 4, 7]);
+        expect(p4M([0, 4, 7], [3, 4, 5])).toEqual([0, 4, 7, 11]);
+        expect(l4m([0, 4, 7, 11], [3, 4, 5])).toEqual([4, 7, 11]);
+        expect(l4m([4, 7, 11], [3, 4, 5])).toEqual([0, 4, 7, 11]);
+        expect(p5d([0, 3, 6, 9], [3, 4, 5])).toEqual([0, 3, 6]);
+        expect(p5d([0, 3, 6], [3, 4, 5])).toEqual([0, 3, 6, 9]);
+        expect(r5d([0, 3, 6, 9], [3, 4, 5])).toEqual([3, 6, 9]);
+        expect(r5d([3, 6, 9], [3, 4, 5])).toEqual([0, 3, 6, 9]);
+        expect(rr5d([0, 3, 6, 9], [3, 4, 5])).toEqual([6, 9, 0]);
+        expect(rr5d([6, 9, 0], [3, 4, 5])).toEqual([0, 3, 6, 9]);
+        expect(z5d([0, 3, 6, 9], [3, 4, 5])).toEqual([9, 0, 3]);
+        expect(z5d([9, 0, 3], [3, 4, 5])).toEqual([0, 3, 6, 9]);
     })
 
     it('octaTowers', () => {
