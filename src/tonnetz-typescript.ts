@@ -1641,7 +1641,7 @@ export const TRANSFORMATIONS: ObjectTransformations = {
     "7": q13,
     "8": q42,
     "9": l14,
-    "10": n42
+    "0": n42
 }
 
 export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
