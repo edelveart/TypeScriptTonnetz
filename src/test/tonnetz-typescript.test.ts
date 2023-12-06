@@ -370,6 +370,21 @@ describe('tonnetz-tests', () => {
         expect(transform([0, 3, 7], "hsftnprpl")).toEqual([10, 1, 5]);
     })
 
+    it('TonnetzTransformations PLR* functions not all to "normal form"', () => {
+        expect(transform([0, 3, 6], "1")).toEqual([0, 3, 7]);
+        expect(transform([0, 4, 8], "2")).toEqual([0, 4, 7]);
+        expect(transform([0, 4, 7], "3")).toEqual([4, 7, 10]);
+        expect(transform([0, 4, 8], "4")).toEqual([4, 8, 11]);
+        expect(transform([0, 4, 8], "6")).toEqual([9, 0, 4]);
+        expect(transform([0, 4, 7], "7")).toEqual([1, 4, 7]);
+        expect(transform([0, 4, 8], "8")).toEqual([1, 4, 8]);
+        expect(transform([0, 4, 8], "10")).toEqual([5, 8, 0]);
+        // Not in normal form (problem with return transform():
+        expect(transform([9, 0, 3], "5")).toEqual([0, 3, 7]);
+        expect(transform([0, 3, 7], "5")).toEqual([0, 3, 9]);
+        expect(transform([0, 4, 7], "9")).toEqual([0, 4, 8]);
+    })
+
     it('octaTowers', () => {
         expect(octaTowersTwo(0)).toEqual([
             [0, 3, 6, 10], [0, 3, 7, 10],
