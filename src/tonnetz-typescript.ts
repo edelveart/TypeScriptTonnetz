@@ -2062,5 +2062,3 @@ export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [
         "z": ['z5d']
     }
 }
-// console.log(l13([0, 3, 6, 10], [3, 4, 5]))
-console.log(hexaCycles(0, [2, 3, 7], 4))
