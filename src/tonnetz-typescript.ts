@@ -1,5 +1,3 @@
-import { c } from "vitest/dist/reporters-5f784f42"
-
 export type TonnetzSpaceConnected = [3, 4, 5] | [1, 1, 10] | [1, 2, 9] | [1, 3, 8] | [1, 4, 7] | [1, 5, 6] | [2, 3, 7] | [2, 5, 5]
 export type TonnetzSpaceNonConnected = [2, 4, 6] | [2, 2, 8] | [3, 3, 6] | [4, 4, 4]
 
@@ -2064,3 +2062,5 @@ export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [
         "z": ['z5d']
     }
 }
+// console.log(l13([0, 3, 6, 10], [3, 4, 5]))
+console.log(hexaCycles(0, [2, 3, 7], 4))
