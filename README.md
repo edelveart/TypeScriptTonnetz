@@ -1,4 +1,4 @@
-# TypeScriptTonnetz
+# TypeScript Tonnetz
 
 TypeScriptTonnetz is a set of functions and operations from Mathematical Music Theory (transformational approach) in Typescript. Specifically, it deals with Tonnetz spaces and functions related to the topic.
 The objective is not musicological analysis itself, but the application of these tools born from analysis for free musical composition and live coding.
@@ -42,13 +42,13 @@ Includes more types of seventh chords and their transformations between them.
 
 Transformations with augmented and diminished triads.
 
-- [x] ` p, r, l, p32, p41, lt13, l41, l14, rt23, rt42, q13, q42, n42`
+- [x] `p, r, l, p32, p41, lt13, l41, l14, rt23, rt42, q13, q42, n42`
 
 ### ST-group
 
 Transformations between triad chords and different types of seventh chords. The groups `PLRQ` and `PLR*` must be included.
 
-- [x]  ` p1M, l1d, p2m, r2M, p3d, r3m, p4M, l4m, p5d, r5d, rr5d, z5d`
+- [x]  `p1M, l1d, p2m, r2M, p3d, r3m, p4M, l4m, p5d, r5d, rr5d, z5d`
 
 Mathematical inspiration in the paper:
 
