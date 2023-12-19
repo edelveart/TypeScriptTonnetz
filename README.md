@@ -14,14 +14,23 @@ Transformations and functions follow the edge flip between triangles and their g
 -   [x] HexaCycles, OctaCycles, EnneaCycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
 
-Mathematical inspiration (`Trajectoires`) in the thesis:
+Mathematical inspiration (`Trajectoires`) in the doctoral thesis:
 ```
 Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
 ```
 
 ## Dual geometry of the Tonnetz
 
-Features currently in development. These functions belong to the branch of generalized transformational theory for seventh chords.
+We have implemented all the Neo-Riemannian functions developed in the Doctoral thesis written by [**Sonia Cannas**](https://publication-theses.unistra.fr/public/theses_doctorat/2018/CANNAS_Sonia_2018_ED269.pdf):
+
+```
+GEOMETRIC REPRESENTATION AND
+ALGEBRAIC FORMALIZATION OF
+MUSICAL STRUCTURES (2018)
+```
+
+Each of these new transformations from the generalized transformational theory for seventh chords is enabled for the Tonnetz you want to explore.
+
 
 ### PLRQ-group
 
@@ -57,6 +66,8 @@ A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
+
+
 
 ## Remark
 
