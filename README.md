@@ -31,7 +31,6 @@ MUSICAL STRUCTURES (2018)
 
 Each of these new transformations from the generalized transformational theory for seventh chords is enabled for the Tonnetz you want to explore.
 
-
 ### PLRQ-group
 
 -   [x] `p12, p14, p23, p35`
