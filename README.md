@@ -14,7 +14,7 @@ Transformations and functions follow the edge flip between triangles and their g
 -   [x] HexaCycles, OctaCycles, EnneaCycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
 
-Mathematical inspiration (`Trajectoires`) in the doctoral thesis:
+Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
 ```
 Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
 ```
