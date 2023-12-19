@@ -4,7 +4,9 @@ Welcome to the documentation of some specialized mathematical and musical issues
 
 ## The beautiful problem of cycles
 
-There is no gap between the source chord and the destination chord when we do a hexaCycle or an OctaCycle in a Tonnetz `[3, 4, 5]`. However, if we change to other Tonnetz, we will see that there are chords that do not complete a cycle (return to the starting chord by jumping). In TypeScript Tonnetz I have implemented a parameter to control this geometric problem with a number of iteration repetitions as desired by the live coder. The funny thing is that, as you will see in the tables below, a hexaCycle will no longer necessarily have six chords, nor will an octaCycle have that counting feature. But, remember that the harmonious quality of both cycles is maintained.
+There is no gap between the source chord and the destination chord when we do a hexaCycle or an OctaCycle in a Tonnetz `[3, 4, 5]`. However, if we change to other Tonnetz, we will see that there are chords that do not complete a cycle (return to the starting chord by jumping).
+
+In TypeScript Tonnetz I have implemented a parameter to control this geometric problem with a number of iteration repetitions as desired by the live coder. The funny thing is that, as you will see in the tables below, a hexaCycle will no longer necessarily have six chords, nor will an octaCycle have that counting feature. But, remember that the harmonious quality of both cycles is maintained.
 
 ### A. Complete HexaCycle
 
