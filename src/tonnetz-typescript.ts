@@ -1927,7 +1927,7 @@ export const powerTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]
     const modulo = a + b + c;
     const powerTowerMatrixs: Tetrachord[] = [];
     for (let index = 0; index < 3; index++) {
-        const nextOctaTower = (Math.abs(rootNote) + index * (b)) % modulo;
+        const nextOctaTower = ((rootNote + index * b % modulo) + modulo) % modulo;
         for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
             const baseNote = nextOctaTower + index;
             const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
