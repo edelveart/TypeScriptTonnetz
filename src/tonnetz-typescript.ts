@@ -1832,6 +1832,26 @@ export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5],
     return arrayTargetSet;
 }
 
+export const cubeDance = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): TriadChord[] => {
+    const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
+    const arrayTargetSet: TriadChord[] = [];
+
+    for (let index = 0; index <= 3; index++) {
+        const nextHexaCycle = ((rootNote + index * (a + b) % modulo) + modulo) % modulo;
+        for (let index = 0; index < Math.abs(reps); index++) {
+            const baseNote = nextHexaCycle + ((-b) * index);
+            const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNote, tonnetz));
+            const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNote, tonnetz));
+            arrayTargetSet.push(majorTriad, minorTriad);
+        }
+        const diff = rootNote + (a + 2 * b);
+        const augChord = ((diff + index * (a) % modulo) + modulo) % modulo;
+        arrayTargetSet.push(augmentedTriadChord(augChord, tonnetz));
+    }
+    return arrayTargetSet;
+}
+
 export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 4): TriadChord[] => {
     const [a] = tonnetz;
     const arrayTargetSet: TriadChord[] = [];
@@ -1925,7 +1945,7 @@ export const octaTowersTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 
 export const powerTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
     const [a, b, c] = tonnetz;
     const modulo = a + b + c;
-    const powerTowerMatrixs: Tetrachord[] = [];
+    const powerTowerMatrix: Tetrachord[] = [];
     for (let index = 0; index < 3; index++) {
         const nextOctaTower = ((rootNote + index * b % modulo) + modulo) % modulo;
         for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
@@ -1933,11 +1953,11 @@ export const powerTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]
             const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
             const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
             const rightDominant7 = chordNotesToModN(dominantSeventhChord(baseNote + a, tonnetz));
-            powerTowerMatrixs.push(leftHalfDim7, centerMinor7, rightDominant7);
+            powerTowerMatrix.push(leftHalfDim7, centerMinor7, rightDominant7);
         }
-        powerTowerMatrixs.push(chordNotesToModN(diminishedSeventhChord(nextOctaTower + (a - c), tonnetz)))
+        powerTowerMatrix.push(chordNotesToModN(diminishedSeventhChord(nextOctaTower + (a - c), tonnetz)));
     }
-    return powerTowerMatrixs;
+    return powerTowerMatrix;
 }
 
 export const diagAscOctaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[][] => {
