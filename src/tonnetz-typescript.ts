@@ -1820,7 +1820,7 @@ export const seventhsTransform = (chord: Tetrachord, transformation: string, ton
     return transformedChord;
 }
 
-export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: number = 3): TriadChord[] => {
+export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): TriadChord[] => {
     const [, b,] = tonnetz;
     const arrayTargetSet: TriadChord[] = [];
     for (let index = 0; index < Math.abs(reps); index++) {
@@ -1832,7 +1832,7 @@ export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: numbe
     return arrayTargetSet;
 }
 
-export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: number = 4): TriadChord[] => {
+export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 4): TriadChord[] => {
     const [a] = tonnetz;
     const arrayTargetSet: TriadChord[] = [];
     for (let index = 0; index < Math.abs(reps); index++) {
@@ -1844,7 +1844,7 @@ export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: numbe
     return arrayTargetSet;
 }
 
-export const enneaCycles = (rootNote: number, tonnetz: TonnetzSpaces, reps: number = 3): Tetrachord[] => {
+export const enneaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
     const [, b,] = tonnetz;
     const arrayTargetSet: Tetrachord[] = [];
     for (let index = 0; index < Math.abs(reps); index++) {
@@ -1924,9 +1924,10 @@ export const octaTowersTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 
 
 export const powerTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
     const [a, b, c] = tonnetz;
+    const modulo = a + b + c;
     const powerTowerMatrixs: Tetrachord[] = [];
-    for (let index = rootNote; index <= b * reps; index += b) {
-        const nextOctaTower = index;
+    for (let index = 0; index < 3; index++) {
+        const nextOctaTower = (Math.abs(rootNote) + index * (b)) % modulo;
         for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
             const baseNote = nextOctaTower + index;
             const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
