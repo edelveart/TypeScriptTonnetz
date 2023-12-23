@@ -66,7 +66,12 @@ Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
 
+## :construction: Cube Dance and Power Towers
 
+I have implemented Cube Dance and Power Towers with repetitions for all types of Tonnetz. Only one of the possible paths has been chosen.
+
+- [x] Cube Dance
+- [x] Power Towers
 
 ## Remark
 
