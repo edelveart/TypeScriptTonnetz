@@ -1906,7 +1906,7 @@ export const weitzmannRegionsTwo = (rootNote: number, tonnetz: TonnetzSpaces = [
     const childChord4 = chordNotesToModN(majorChordFromTonnetz(rootNote, tonnetz));
     const childChord5 = chordNotesToModN(majorChordFromTonnetz(rootNote + (-b), tonnetz));
     const childChord6 = chordNotesToModN(majorChordFromTonnetz(rootNote + b, tonnetz));
-    arrayTargetSet.push(augmentedTriadRoot, childChord1, childChord2, childChord3, childChord4, childChord5, childChord6);
+    arrayTargetSet.push(augmentedTriadRoot, childChord6, childChord3, childChord4, childChord2, childChord5, childChord1);
     return arrayTargetSet;
 }
 
