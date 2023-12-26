@@ -1952,7 +1952,7 @@ export const powerTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]
             const baseNote = nextOctaTower + index;
             const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
             const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
-            const rightDominant7 = chordNotesToModN(dominantSeventhChord(baseNote + a, tonnetz));
+            const rightDominant7 = chordNotesToModN(dominantSeventhChord(baseNote, tonnetz));
             powerTowerMatrix.push(leftHalfDim7, centerMinor7, rightDominant7);
         }
         powerTowerMatrix.push(chordNotesToModN(diminishedSeventhChord(nextOctaTower + (a - c), tonnetz)));
