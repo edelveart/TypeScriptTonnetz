@@ -42,9 +42,9 @@ Each of these new transformations from the generalized transformational theory f
 
 Includes more types of seventh chords and their transformations between them.
 
--   [x] `p18, p19, p26,  p39, p47, p64, p87, p98`
+-   [x] `p18, p19, p26, p39, p47, p64, p87, p98`
 -   [x] `r63, r76, r86, l71, l89, q62, q76`
--   [x] `rr19, rr98, qq38, qq98`
+-   [x] `rr19, rr39, rr98, qq38, qq98`
 
 ### PLR*-group
 
