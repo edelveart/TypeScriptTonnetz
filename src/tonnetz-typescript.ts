@@ -2151,6 +2151,32 @@ export const boretzRegionsTwo = (rootNote: number, tonnetz: TonnetzSpaces = [3, 
     return arrayTargetSet;
 }
 
+export const hamiltonianCycle1 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 12): TriadChord[] => {
+    const [a,b,] = tonnetz;
+    const arrayTargetSet: TriadChord[] = [];
+    for (let index = 0; index < Math.abs(reps); index++) {
+        const baseNoteOne = rootNote + (a + b) * index;
+        const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNoteOne, tonnetz));
+        const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + b, tonnetz));
+        arrayTargetSet.push(majorTriad, minorTriad)
+    }
+    return arrayTargetSet;
+}
+
+export const hamiltonianCycle2 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 12): TriadChord[] => {
+    const [a,b,] = tonnetz;
+    const arrayTargetSet: TriadChord[] = [];
+    for (let index = 0; index < Math.abs(reps); index++) {
+        const baseNoteOne = rootNote  + (2 * a + b) * index;
+        const majorTriad1 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne, tonnetz));
+        const minorTriad2 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne, tonnetz));
+        const majorTriad3 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + a, tonnetz));
+        const minorTriad4 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + a + b, tonnetz));
+        arrayTargetSet.push(majorTriad1, minorTriad2, majorTriad3, minorTriad4)
+    }
+    return arrayTargetSet;
+}
+
 export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [key: string]: readonly string[] } } = {
     "M": {
         "p": ['p1M', 'p4M'],
