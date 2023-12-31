@@ -13,6 +13,7 @@ Transformations and functions follow the edge flip between triangles and their g
 -   [x] Film music transformations: `f(), n(), s(), h(), t6()`
 -   [x] HexaCycles, OctaCycles, EnneaCycles, Hamiltonian Cycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
+-   [x] Cube Dance, Power Towers
 
 Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
 ```
@@ -65,13 +66,6 @@ A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
-
-## :construction: Cube Dance and Power Towers (23-12-2023)
-
-I have implemented Cube Dance and Power Towers with repetitions for all types of Tonnetz. Only one of the possible paths has been chosen.
-
-- [x] Cube Dance
-- [x] Power Towers
 
 ## Remark
 
