@@ -2,12 +2,20 @@
     "name": "tstonnetz",
     "version": "0.0.8",
     "description": "TypeScriptTonnetz is a set of Mathematical Music Theory (transformational approach) functions and operations in Typescript. Specifically, these are Tonnetz spaces and functions related to the topic. The goal is not musicological analysis itself, but the application of these analysis-born tools for algorithmic composition and live coding.",
+    "keywords": [
+        "tonnetz",
+        "algorithmic composition",
+        "livecoding",
+        "mathematical music theory"
+    ],
     "main": "tstonnetz.ts",
+    "type": "module",
     "scripts": {
         "test": "vitest",
         "coverage": "vitest run --coverage"
     },
     "author": "Edgar Armando Delgado Vega",
+    "homepage": "https://github.com/edelveart/TypeScriptTonnetz",
     "license": "MIT",
     "dependencies": {
         "typescript": "5.2.2"
