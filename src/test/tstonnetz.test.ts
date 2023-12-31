@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegionsTwo, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegionsTwo, z5d } from '../tstonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d } from '../tstonnetz';
 
 
 describe('tonnetz-tests', () => {
@@ -413,21 +413,21 @@ describe('tonnetz-tests', () => {
     })
 
     it('octaTowers', () => {
-        expect(octaTowersTwo(0)).toEqual([
+        expect(octaTower(0)).toEqual([
             [0, 3, 6, 10], [0, 3, 7, 10],
-            [3, 7, 10, 1], [9, 0, 3, 7],
-            [9, 0, 4, 7], [0, 4, 7, 10],
+            [0, 4, 7, 10], [9, 0, 3, 7],
+            [9, 0, 4, 7], [9, 1, 4, 7],
             [6, 9, 0, 4], [6, 9, 1, 4],
-            [9, 1, 4, 7], [3, 6, 9, 1],
-            [3, 6, 10, 1], [6, 10, 1, 4]
+            [6, 10, 1, 4], [3, 6, 9, 1],
+            [3, 6, 10, 1], [3, 7, 10, 1]
         ]);
-        expect(octaTowersTwo(2)).toEqual([
+        expect(octaTower(2)).toEqual([
             [2, 5, 8, 0], [2, 5, 9, 0],
-            [5, 9, 0, 3], [11, 2, 5, 9],
-            [11, 2, 6, 9], [2, 6, 9, 0],
+            [2, 6, 9, 0], [11, 2, 5, 9],
+            [11, 2, 6, 9], [11, 3, 6, 9],
             [8, 11, 2, 6], [8, 11, 3, 6],
-            [11, 3, 6, 9], [5, 8, 11, 3],
-            [5, 8, 0, 3], [8, 0, 3, 6]
+            [8, 0, 3, 6], [5, 8, 11, 3],
+            [5, 8, 0, 3], [5, 9, 0, 3]
         ]);
     })
 
@@ -469,22 +469,22 @@ describe('tonnetz-tests', () => {
     })
 
     it('Weitzmann Regions', () => {
-        expect(weitzmannRegionsTwo(0)).toEqual([
-            [0, 4, 8], [1, 4, 8],
-            [5, 8, 0], [9, 0, 4],
-            [0, 4, 7], [8, 0, 3],
-            [4, 8, 11]
+        expect(weitzmannRegions(0)).toEqual([
+            [0, 4, 8], [4, 8, 11],
+            [9, 0, 4], [0, 4, 7],
+            [5, 8, 0], [8, 0, 3],
+            [1, 4, 8]
         ]);
-        expect(weitzmannRegionsTwo(2)).toEqual([
-            [2, 6, 10], [3, 6, 10],
-            [7, 10, 2], [11, 2, 6],
-            [2, 6, 9], [10, 2, 5],
-            [6, 10, 1]
+        expect(weitzmannRegions(2)).toEqual([
+            [2, 6, 10], [6, 10, 1],
+            [11, 2, 6], [2, 6, 9],
+            [7, 10, 2], [10, 2, 5],
+            [3, 6, 10]
         ]);
     });
 
     it('Boretz Regions', () => {
-        expect(boretzRegionsTwo(0)).toEqual([
+        expect(boretzRegions(0)).toEqual([
             [0, 3, 6, 9], [11, 3, 6, 9],
             [3, 6, 9, 1], [2, 6, 9, 0],
             [6, 9, 0, 4], [5, 9, 0, 3],
@@ -492,7 +492,7 @@ describe('tonnetz-tests', () => {
             [0, 3, 6, 10]
         ]);
 
-        expect(boretzRegionsTwo(2)).toEqual([
+        expect(boretzRegions(2)).toEqual([
             [2, 5, 8, 11], [1, 5, 8, 11],
             [5, 8, 11, 3], [4, 8, 11, 2],
             [8, 11, 2, 6], [7, 11, 2, 5],
