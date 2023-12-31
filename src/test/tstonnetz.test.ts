@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegionsTwo, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegionsTwo, z5d } from '../tonnetz-typescript';
+import { boretzRegionsTwo, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTowersTwo, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegionsTwo, z5d } from '../tstonnetz';
 
 
 describe('tonnetz-tests', () => {

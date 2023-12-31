@@ -2264,7 +2264,43 @@ export const hamiltonianCycle6 = (rootNote: number, tonnetz: TonnetzSpaces = [3,
     }
     return arrayTargetSet;
 }
+// PLRPLPRLPLRLPRLRPRLRPLRL
 
+export const hamiltonianCycle7 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 1): TriadChord[] => {
+    const [a, b, c] = tonnetz;
+    const arrayTargetSet: TriadChord[] = [];
+    for (let index = 0; index < Math.abs(reps); index++) {
+        const baseNoteOne = rootNote + (a + b + c) * index;
+        const majorTriad1 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne, tonnetz));
+        const minorTriad2 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + b, tonnetz));
+        const majorTriad3 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + b, tonnetz));
+        const minorTriad4 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + 2 * b, tonnetz));
+        const majorTriad5 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + 2 * b, tonnetz));
+        const minorTriad6 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne, tonnetz));
+        const majorTriad7 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + a, tonnetz));
+        const minorTriad8 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + a, tonnetz));
+        const majorTriad9 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + (2 * b) + a, tonnetz));
+        const minorTriad10 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + (2 * b) + a, tonnetz));
+        const majorTriad11 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + a + b, tonnetz));
+        const minorTriad12 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + a + b, tonnetz));
+        const majorTriad13 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + (2 * a) + b, tonnetz));
+        const minorTriad14 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + (2 * a) + b,  tonnetz));
+        const majorTriad15 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + (2 * a), tonnetz));
+        const minorTriad16 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + (2 * a),  tonnetz));
+        const majorTriad17 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + (c - a), tonnetz));
+        const minorTriad18 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + (c - a),  tonnetz));
+        const majorTriad19 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + c, tonnetz));
+        const minorTriad20 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + c,  tonnetz));
+        const majorTriad21 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + (b - a), tonnetz));
+        const minorTriad22 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + (b - a),  tonnetz));
+        const majorTriad23 = chordNotesToModN(majorChordFromTonnetz(baseNoteOne + 3 * a, tonnetz));
+        const minorTriad24 = chordNotesToModN(minorChordFromTonnetz(baseNoteOne + 3 * a,  tonnetz));
+        arrayTargetSet.push(majorTriad1, minorTriad2, majorTriad3, minorTriad4, majorTriad5, minorTriad6, majorTriad7, minorTriad8,
+            majorTriad9, minorTriad10, majorTriad11, minorTriad12, majorTriad13, minorTriad14, majorTriad15, minorTriad16,
+            majorTriad17, minorTriad18, majorTriad19, minorTriad20, majorTriad21, minorTriad22, majorTriad23, minorTriad24)
+    }
+    return arrayTargetSet;
+}
 
 export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [key: string]: readonly string[] } } = {
     "M": {

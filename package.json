@@ -7,7 +7,7 @@
         "test": "vitest",
         "coverage": "vitest run --coverage"
     },
-    "author": "Edgar Delgado Vega",
+    "author": "Edgar Armando Delgado Vega",
     "license": "MIT",
     "dependencies": {
         "typescript": "5.2.2"
