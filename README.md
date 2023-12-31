@@ -9,11 +9,10 @@ It emerged as a development branch to contribute to Miika Alonen's phenomenal [Z
 
 Transformations and functions follow the edge flip between triangles and their geometries (so far), so they maintain two common notes (not necessarily voice-leading considerations). In other words, diferent Tonnetz Spaces follow the voice-leading space geometry of the conventional Tonnetz.
 
--   [x] PRL functions and compositions of any length
+-   [x] PRL functions and compositions of any length, cardinal transformations
 -   [x] Film music transformations: `f(), n(), s(), h(), t6()`
--   [x] HexaCycles, OctaCycles, EnneaCycles
+-   [x] HexaCycles, OctaCycles, EnneaCycles, Hamiltonian Cycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
--   [x] Hamiltonian Cycles
 
 Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
 ```
