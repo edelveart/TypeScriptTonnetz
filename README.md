@@ -13,6 +13,7 @@ Transformations and functions follow the edge flip between triangles and their g
 -   [x] Film music transformations: `f(), n(), s(), h(), t6()`
 -   [x] HexaCycles, OctaCycles, EnneaCycles
 -   [x] Weitzmann Regions, Boretz Regions, OctaTowers
+-   [x] Hamiltonian Cycles
 
 Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
 ```
