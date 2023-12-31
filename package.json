@@ -1,7 +1,7 @@
 {
-    "name": "tonnetz-typescript.ts",
+    "name": "tstonnetz",
     "version": "1.0.0",
-    "description": "",
+    "description": "TypeScriptTonnetz is a set of Mathematical Music Theory (transformational approach) functions and operations in Typescript. Specifically, these are Tonnetz spaces and functions related to the topic. The goal is not musicological analysis itself, but the application of these analysis-born tools for algorithmic composition and live coding.",
     "main": "tonnetz-typescript.ts",
     "scripts": {
         "test": "vitest",
