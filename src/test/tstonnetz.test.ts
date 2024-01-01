@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6 } from '../tstonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers } from '../tstonnetz';
 
 
 describe('tonnetz-tests', () => {
@@ -536,6 +536,39 @@ describe('tonnetz-tests', () => {
             [9, 1, 4, 7], [9, 0, 4, 7], [9, 0, 3, 7],
             [5, 9, 0, 3], [5, 8, 0, 3], [5, 8, 11, 3],
             [1, 5, 8, 11], [1, 4, 8, 11], [1, 4, 7, 11]
+        ]);
+    });
+
+    it('Power Towers', () => {
+        expect(powerTowers(0, [3, 4, 5])).toEqual([
+            [0, 3, 6, 10], [0, 3, 7, 10], [0, 4, 7, 10],
+            [9, 0, 3, 7], [9, 0, 4, 7], [9, 1, 4, 7],
+            [6, 9, 0, 4], [6, 9, 1, 4], [6, 10, 1, 4],
+            [3, 6, 9, 1], [3, 6, 10, 1], [3, 7, 10, 1],
+            [10, 1, 4, 7], [4, 7, 10, 2], [4, 7, 11, 2],
+            [4, 8, 11, 2], [1, 4, 7, 11], [1, 4, 8, 11],
+            [1, 5, 8, 11], [10, 1, 4, 8], [10, 1, 5, 8],
+            [10, 2, 5, 8], [7, 10, 1, 5], [7, 10, 2, 5],
+            [7, 11, 2, 5], [2, 5, 8, 11], [8, 11, 2, 6],
+            [8, 11, 3, 6], [8, 0, 3, 6], [5, 8, 11, 3],
+            [5, 8, 0, 3], [5, 9, 0, 3], [2, 5, 8, 0],
+            [2, 5, 9, 0], [2, 6, 9, 0], [11, 2, 5, 9],
+            [11, 2, 6, 9], [11, 3, 6, 9], [6, 9, 0, 3]
+        ]);
+        expect(powerTowers(5, [2, 3, 7])).toEqual([
+            [5, 7, 9, 0], [5, 7, 10, 0], [5, 8, 10, 0],
+            [3, 5, 7, 10], [3, 5, 8, 10], [3, 6, 8, 10],
+            [1, 3, 5, 8], [1, 3, 6, 8], [1, 4, 6, 8],
+            [11, 1, 3, 6], [11, 1, 4, 6], [11, 2, 4, 6],
+            [0, 2, 4, 6], [8, 10, 0, 3], [8, 10, 1, 3],
+            [8, 11, 1, 3], [6, 8, 10, 1], [6, 8, 11, 1],
+            [6, 9, 11, 1], [4, 6, 8, 11], [4, 6, 9, 11],
+            [4, 7, 9, 11], [2, 4, 6, 9], [2, 4, 7, 9],
+            [2, 5, 7, 9], [3, 5, 7, 9], [11, 1, 3, 6],
+            [11, 1, 4, 6], [11, 2, 4, 6], [9, 11, 1, 4],
+            [9, 11, 2, 4], [9, 0, 2, 4], [7, 9, 11, 2],
+            [7, 9, 0, 2], [7, 10, 0, 2], [5, 7, 9, 0],
+            [5, 7, 10, 0], [5, 8, 10, 0], [6, 8, 10, 0]
         ]);
     });
 
