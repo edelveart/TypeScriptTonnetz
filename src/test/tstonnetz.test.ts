@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers } from '../tstonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance } from '../tstonnetz';
 
 
 describe('tonnetz-tests', () => {
@@ -570,6 +570,35 @@ describe('tonnetz-tests', () => {
             [7, 9, 0, 2], [7, 10, 0, 2], [5, 7, 9, 0],
             [5, 7, 10, 0], [5, 8, 10, 0], [6, 8, 10, 0]
         ]);
+    });
+
+
+    it('Cube Dance', () => {
+        expect(cubeDance(0, [3, 4, 5])).toEqual([
+            [0, 4, 7], [0, 3, 7], [8, 0, 3],
+            [8, 11, 3], [4, 8, 11], [4, 7, 11],
+            [11, 3, 7], [7, 11, 2], [7, 10, 2],
+            [3, 7, 10], [3, 6, 10], [11, 3, 6],
+            [11, 2, 6], [2, 6, 10], [2, 6, 9],
+            [2, 5, 9], [10, 2, 5], [10, 1, 5],
+            [6, 10, 1], [6, 9, 1], [5, 9, 1],
+            [9, 1, 4], [9, 0, 4], [5, 9, 0],
+            [5, 8, 0], [1, 5, 8], [1, 4, 8],
+            [8, 0, 4]
+        ]);
+        expect(cubeDance(3, [1, 4, 7])).toEqual([
+            [3, 7, 8], [3, 4, 8], [11, 3, 4],
+            [11, 0, 4], [7, 11, 0], [7, 8, 0],
+            [0, 4, 8], [8, 0, 1], [8, 9, 1],
+            [4, 8, 9], [4, 5, 9], [0, 4, 5],
+            [0, 1, 5], [1, 5, 9], [1, 5, 6],
+            [1, 2, 6], [9, 1, 2], [9, 10, 2],
+            [5, 9, 10], [5, 6, 10], [2, 6, 10],
+            [6, 10, 11], [6, 7, 11], [2, 6, 7],
+            [2, 3, 7], [10, 2, 3], [10, 11, 3],
+            [3, 7, 11]
+        ]);
+
     });
 
     it('seventhTransformations to normal form. Returns the same chord if the transformation is not supported.', () => {
