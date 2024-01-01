@@ -9,7 +9,6 @@
         "mathematical music theory"
     ],
     "main": "tstonnetz.ts",
-    "type": "module",
     "scripts": {
         "test": "vitest",
         "coverage": "vitest run --coverage"
