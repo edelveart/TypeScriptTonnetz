@@ -3,6 +3,6 @@
         "target": "es6",
         "module": "CommonJS",
         "sourceMap": true,
-        "strict": true,
+        "strict": true
     }
 }

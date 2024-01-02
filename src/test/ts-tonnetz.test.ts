@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance } from '../tstonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance } from '../ts-tonnetz';
 
 
 describe('tonnetz-tests', () => {

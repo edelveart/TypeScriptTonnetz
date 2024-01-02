@@ -1,7 +1,7 @@
 {
     "name": "ts-tonnetz",
     "version": "0.0.8",
-    "description": "TypeScript Tonnetz is a set of structures and functions from mathematical music theory.",
+    "description": "TypeScript Tonnetz is a set of structures and functions from mathematical music theory",
     "keywords": [
         "tonnetz",
         "algorithmic composition",
@@ -9,6 +9,7 @@
         "mathematical music theory"
     ],
     "main": "ts-tonnetz.ts",
+    "types": "./src/tonnetz-types.d.ts",
     "scripts": {
         "test": "vitest",
         "coverage": "vitest run --coverage"
