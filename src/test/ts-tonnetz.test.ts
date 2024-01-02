@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance } from '../ts-tonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance, hamiltonianCycle8, hamiltonianCycle7 } from '../ts-tonnetz';
 
 
 describe('tonnetz-tests', () => {
@@ -755,6 +755,34 @@ describe('tonnetz-tests', () => {
             [2, 6, 9], [2, 5, 9],
             [5, 9, 0], [5, 8, 0],
             [1, 5, 8], [1, 4, 8],
+            [9, 1, 4], [9, 0, 4]
+        ]);
+        expect(hamiltonianCycle7(0)).toEqual([
+            [0, 4, 7], [0, 3, 7],
+            [8, 0, 3], [5, 8, 0],
+            [5, 9, 0], [9, 0, 4],
+            [9, 1, 4], [6, 9, 1],
+            [2, 6, 9], [2, 5, 9],
+            [10, 2, 5], [7, 10, 2],
+            [3, 7, 10], [3, 6, 10],
+            [6, 10, 1], [10, 1, 5],
+            [1, 5, 8], [1, 4, 8],
+            [4, 8, 11], [8, 11, 3],
+            [11, 3, 6], [11, 2, 6],
+            [7, 11, 2], [4, 7, 11]
+        ]);
+        expect(hamiltonianCycle8(0)).toEqual([
+            [0, 4, 7], [4, 7, 11],
+            [7, 11, 2], [11, 2, 6],
+            [11, 3, 6], [3, 6, 10],
+            [6, 10, 1], [10, 1, 5],
+            [10, 2, 5], [7, 10, 2],
+            [3, 7, 10], [0, 3, 7],
+            [8, 0, 3], [8, 11, 3],
+            [4, 8, 11], [1, 4, 8],
+            [1, 5, 8], [5, 8, 0],
+            [5, 9, 0], [2, 5, 9],
+            [2, 6, 9], [6, 9, 1],
             [9, 1, 4], [9, 0, 4]
         ]);
     });

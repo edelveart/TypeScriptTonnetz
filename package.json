@@ -1,4 +1,5 @@
 {
+    "type": "commonjs",
     "name": "ts-tonnetz",
     "version": "0.0.81",
     "description": "TypeScript Tonnetz is a set of structures and functions from mathematical music theory",

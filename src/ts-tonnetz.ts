@@ -213,7 +213,6 @@ export const secondChordComparison = (reduceModN: TriadChord | Tetrachord, compa
 export const parallelTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
     const [a, b, c] = tonnetz;
     const modulo = a + b + c;
-    const p: number = (a + b + c);
 
     const reduceModN = chordNotesToModN(chordFromTonnetz);
     let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
@@ -2194,6 +2193,32 @@ export const hamiltonianCycle6 = (rootNote: number, tonnetz: TonnetzSpaces = [3,
     const arrayTargetSet: TriadChord[] = [];
     const transforms = [0, b, b, 2 * b, 2 * b, 0, a, a, (2 * b) + a, (2 * b) + a, a + b, a + b, (2 * a) + b, (2 * a) + b,
         2 * a, 2 * a, (c - a), (c - a), c, c, (b - a), (b - a), 3 * a, 3 * a];
+    for (let index = 0; index < Math.abs(reps); index++) {
+        const majorTriad = chordNotesToModN(majorChordFromTonnetz(rootNote + transforms[2 * index], tonnetz));
+        const minorTriad = chordNotesToModN(minorChordFromTonnetz(rootNote + transforms[2 * index + 1], tonnetz));
+        arrayTargetSet.push(majorTriad, minorTriad);
+    }
+    return arrayTargetSet;
+}
+
+export const hamiltonianCycle7 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 12): TriadChord[] => {
+    const [a, b, c] = tonnetz;
+    const arrayTargetSet: TriadChord[] = [];
+    const transforms = [0, 0, 2 * b, c, c, 3 * a, 3 * a, 2 * a, (c - a), (c - a), (2 * a) + b, a + b, a, a,
+        2 * a, (2 * a) + b, (b - a), (b - a), b, 2 * b, (2 * b) + a, (2 * b) + a, a + b, b];
+    for (let index = 0; index < Math.abs(reps); index++) {
+        const majorTriad = chordNotesToModN(majorChordFromTonnetz(rootNote + transforms[2 * index], tonnetz));
+        const minorTriad = chordNotesToModN(minorChordFromTonnetz(rootNote + transforms[2 * index + 1], tonnetz));
+        arrayTargetSet.push(majorTriad, minorTriad);
+    }
+    return arrayTargetSet;
+}
+
+export const hamiltonianCycle8 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 12): TriadChord[] => {
+    const [a, b, c] = tonnetz;
+    const arrayTargetSet: TriadChord[] = [];
+    const transforms = [0, b, a + b, (2 * b) + a, (2 * b) + a, a, 2 * a, 2 * a + b, 2 * a + b, a + b,
+        a, 0, 2 * b, 2 * b, b, (b - a), (b - a), c, c, (c - a), (c - a), 2 * a, 3 * a, 3 * a];
     for (let index = 0; index < Math.abs(reps); index++) {
         const majorTriad = chordNotesToModN(majorChordFromTonnetz(rootNote + transforms[2 * index], tonnetz));
         const minorTriad = chordNotesToModN(minorChordFromTonnetz(rootNote + transforms[2 * index + 1], tonnetz));
