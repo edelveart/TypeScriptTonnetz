@@ -1969,16 +1969,16 @@ export const explorativeTransform = (chord: number[], transformation: string, to
         } else if (transformedChord.length === 3) {
             const transformOp = AVAILABLETRANSFORMATIONS[operations[1]]
             if (transformOp) {
-                if(operations[1] === "N" || operations[1] === "S" || operations[1] === "W" || operations[1] === "E") {
+                if (operations[1] === "N" || operations[1] === "S" || operations[1] === "W" || operations[1] === "E") {
                     // Handle cardinal operations
                     let operationIndex = operations[2].length > 0 ? parseInt(operations[2]) : 1;
-                    operationIndex = operationIndex<=0 ? 1 : operationIndex;
-                    for(let i=0; i<operationIndex; i++) {
+                    operationIndex = operationIndex <= 0 ? 1 : operationIndex;
+                    for (let i = 0; i < operationIndex; i++) {
                         transformedChord = TRANSFORMATIONS[operations[1]](transformedChord as TriadChord, tonnetz);
                     }
                 } else {
                     // Handle normal
-                    let operationIndex = operations[2].length > 0 ? parseInt(operations[2])-1 : 0;
+                    let operationIndex = operations[2].length > 0 ? parseInt(operations[2]) - 1 : 0;
                     operationIndex = safeMod(operationIndex, transformOp.length);
                     const parsedTransform = transformOp[operationIndex];
                     transformedChord = TRANSFORMATIONS[parsedTransform](transformedChord as TriadChord, tonnetz);
@@ -1990,14 +1990,16 @@ export const explorativeTransform = (chord: number[], transformation: string, to
     return transformedChord;
 }
 
-export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): TriadChord[] => {
-    const [, b,] = tonnetz;
+export const hexaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3, components: number = 4): TriadChord[] => {
+    const [a, b,] = tonnetz;
     const arrayTargetSet: TriadChord[] = [];
-    for (let index = 0; index < Math.abs(reps); index++) {
-        const baseNote = rootNote + ((-b) * index);
-        const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNote, tonnetz));
-        const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNote, tonnetz));
-        arrayTargetSet.push(majorTriad, minorTriad)
+    for (let nextHexatonicCycle = 0; nextHexatonicCycle < components * a; nextHexatonicCycle += a) {
+        for (let index = 0; index < Math.abs(reps); index++) {
+            const baseNote = rootNote + ((-b) * index) + nextHexatonicCycle;
+            const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNote, tonnetz));
+            const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNote, tonnetz));
+            arrayTargetSet.push(majorTriad, minorTriad);
+        }
     }
     return arrayTargetSet;
 }
@@ -2022,27 +2024,31 @@ export const cubeDance = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], 
     return arrayTargetSet;
 }
 
-export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 4): TriadChord[] => {
-    const [a] = tonnetz;
+export const octaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 4, components: number = 3): TriadChord[] => {
+    const [a, b,] = tonnetz;
     const arrayTargetSet: TriadChord[] = [];
-    for (let index = 0; index < Math.abs(reps); index++) {
-        const baseNote = rootNote + (a * index);
-        const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNote, tonnetz));
-        const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNote, tonnetz));
-        arrayTargetSet.push(majorTriad, minorTriad)
+    for (let nexOctatonicCycle = 0; nexOctatonicCycle < components * (2 * b); nexOctatonicCycle += (2 * b)) {
+        for (let index = 0; index < Math.abs(reps); index++) {
+            const baseNote = rootNote + (a * index) + nexOctatonicCycle;
+            const majorTriad = chordNotesToModN(majorChordFromTonnetz(baseNote, tonnetz));
+            const minorTriad = chordNotesToModN(minorChordFromTonnetz(baseNote, tonnetz));
+            arrayTargetSet.push(majorTriad, minorTriad)
+        }
     }
     return arrayTargetSet;
 }
 
-export const enneaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
-    const [, b,] = tonnetz;
+export const enneaCycles = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3, components: number = 4): Tetrachord[] => {
+    const [a, b,] = tonnetz;
     const arrayTargetSet: Tetrachord[] = [];
-    for (let index = 0; index < Math.abs(reps); index++) {
-        const baseNote = rootNote + ((-b) * index);
-        const dominant7 = chordNotesToModN(dominantSeventhChord(baseNote, tonnetz));
-        const minor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
-        const halfdim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
-        arrayTargetSet.push(dominant7, minor7, halfdim7);
+    for (let nextEnneatonicCycle = 0; nextEnneatonicCycle < components * a; nextEnneatonicCycle += a) {
+        for (let index = 0; index < Math.abs(reps); index++) {
+            const baseNote = rootNote + ((-b) * index) + nextEnneatonicCycle;
+            const dominant7 = chordNotesToModN(dominantSeventhChord(baseNote, tonnetz));
+            const minor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
+            const halfdim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
+            arrayTargetSet.push(dominant7, minor7, halfdim7);
+        }
     }
     return arrayTargetSet;
 }
@@ -2099,15 +2105,17 @@ export const octaTowers = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5],
     return octaTowerMatrix;
 }
 
-export const octaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3): Tetrachord[] => {
-    const [a] = tonnetz;
+export const octaTower = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 3, components = 3): Tetrachord[] => {
+    const [a, b] = tonnetz;
     const octaTowerMatrix: Tetrachord[] = [];
-    for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
-        const baseNote = rootNote + index;
-        const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
-        const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
-        const rightDominant7 = chordNotesToModN(dominantSeventhChord(baseNote, tonnetz));
-        octaTowerMatrix.push(leftHalfDim7, centerMinor7, rightDominant7);
+    for (let nexOctatonicTower = 0; nexOctatonicTower < components * (2 * b); nexOctatonicTower += (2 * b)) {
+        for (let index = 0; index >= (-a * Math.abs(reps)); index += (-a)) {
+            const baseNote = rootNote + index + nexOctatonicTower;
+            const leftHalfDim7 = chordNotesToModN(halfDiminishedChord(baseNote, tonnetz));
+            const centerMinor7 = chordNotesToModN(minorSeventhChord(baseNote, tonnetz));
+            const rightDominant7 = chordNotesToModN(dominantSeventhChord(baseNote, tonnetz));
+            octaTowerMatrix.push(leftHalfDim7, centerMinor7, rightDominant7);
+        }
     }
     return octaTowerMatrix;
 }
