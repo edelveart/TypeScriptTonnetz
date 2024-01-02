@@ -26,14 +26,16 @@ In TypeScript Tonnetz I have implemented a parameter to control this geometric p
 |      444      |            6            |
 
 * Tonnetz Spaces can be classified by `y` component of `[x, y, z]`.
-```
+  
+```text
 y = 5 => 24, y = 4 => 6, y = 3 => 8, y = 2 => 12
 ```
+
 * **The formulas could have `x + z` as an invariant for each Tonnetz grouping.**
 * I have found some complete formulas but so far they seem to be particular equations for iterations `8` and `6`.
 * Tonnetz `[1, 1, 10]` is a strange case among all.
 
-```
+```text
 // Formula
 (x + z) - y + 2
 ```
@@ -57,8 +59,9 @@ y = 5 => 24, y = 4 => 6, y = 3 => 8, y = 2 => 12
 
 * Tonnetz Spaces can be classified by `x` component of `[x, y, z]`.
 
-```
+```text
 x = 3 => 8, x = 1 => 24, x = 2 => 12, x = 4 => 6
 ```
+
 * **The formulas could have `y + z` as an invariant for each Tonnetz grouping.**
 * Tonnetz `[4, 4, 4]` is a strange case among all.
