@@ -9,14 +9,15 @@ It emerged as a development branch to contribute to Miika Alonen's phenomenal [Z
 
 Transformations and functions follow the edge flip between triangles and their geometries (so far), so they maintain two common notes (not necessarily voice-leading considerations). In other words, diferent Tonnetz Spaces follow the voice-leading space geometry of the conventional Tonnetz.
 
--   [x] PRL functions and compositions of any length, cardinal transformations
--   [x] Film music transformations: `f(), n(), s(), h(), t6()`
--   [x] HexaCycles, OctaCycles, EnneaCycles, Hamiltonian Cycles
--   [x] Weitzmann Regions, Boretz Regions, OctaTowers
--   [x] Cube Dance, Power Towers
+- [x] PRL functions and compositions of any length, cardinal transformations
+- [x] Film music transformations: `f(), n(), s(), h(), t6()`
+- [x] HexaCycles, OctaCycles, EnneaCycles, Hamiltonian Cycles
+- [x] Weitzmann Regions, Boretz Regions, OctaTowers
+- [x] Cube Dance, Power Towers
 
 Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
-```
+
+```text
 Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
 ```
 
@@ -24,7 +25,7 @@ Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
 
 We have implemented all the Neo-Riemannian functions developed in the Doctoral thesis written by [**Sonia Cannas**](https://publication-theses.unistra.fr/public/theses_doctorat/2018/CANNAS_Sonia_2018_ED269.pdf):
 
-```
+```text
 GEOMETRIC REPRESENTATION AND
 ALGEBRAIC FORMALIZATION OF
 MUSICAL STRUCTURES (2018)
@@ -34,18 +35,18 @@ Each of these new transformations from the generalized transformational theory f
 
 ### PLRQ-group
 
--   [x] `p12, p14, p23, p35`
--   [x] `r12, r23, r42, r35, r53`
--   [x] `l13, l15, l42`
--   [x] `q43, q15, rr35, qq51, n51`
+- [x] `p12, p14, p23, p35`
+- [x] `r12, r23, r42, r35, r53`
+- [x] `l13, l15, l42`
+- [x] `q43, q15, rr35, qq51, n51`
 
 ### PLRQ-group extended
 
 Includes more types of seventh chords and their transformations between them.
 
--   [x] `p18, p19, p26, p39, p47, p64, p87, p98`
--   [x] `r63, r76, r86, l71, l89, q62, q76`
--   [x] `rr19, rr39, rr98, qq38, qq98`
+- [x] `p18, p19, p26, p39, p47, p64, p87, p98`
+- [x] `r63, r76, r86, l71, l89, q62, q76`
+- [x] `rr19, rr39, rr98, qq38, qq98`
 
 ### PLR*-group
 
@@ -61,33 +62,16 @@ Transformations between triad chords and different types of seventh chords. The 
 
 Mathematical inspiration in the paper:
 
-```
+```text
 A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
 
-## Remark
-
-```ts
-COMMIT "cbd4f62" has code by Miika Alonen = {
--  Type: ChordGenerationFunction (line 15),
--  Type: ChordGenerators (line 17),
--  Object: CHORD_TYPES (line 150),
--  Function: chordFromTonnetz (line 162),
-}
-
-COMMIT "f3b21a0" has code by Miika Alonen = {
--  Function: seventhsTransform (line 721,722,723)
-}
-
-I change the `RegExp: (/([a-z][0-9]*)/g)` of line `721` with the new one `(/([a-z]{1,2}[0-9]*)/g)`
-```
-
 ## Contributing
 
--  New features (`feat: <...>` )
--  Fix errors and bugs (`fix: <...>`)
--  Refactor (`refactor: <...>`)
--  Testing (`test: <...>`)
--  Documentation (`docs: <...>`)
+- New features (`feat: <...>` )
+- Fix errors and bugs (`fix: <...>`)
+- Refactor (`refactor: <...>`)
+- Testing (`test: <...>`)
+- Documentation (`docs: <...>`)

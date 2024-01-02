@@ -1,5 +1,5 @@
 {
-    "type": "commonjs",
+    "type": "module",
     "name": "ts-tonnetz",
     "version": "0.0.81",
     "description": "TypeScript Tonnetz is a set of structures and functions from mathematical music theory",
@@ -9,11 +9,11 @@
         "livecoding",
         "mathematical music theory"
     ],
-    "main": "ts-tonnetz.ts",
-    "types": "./src/tonnetz-types.d.ts",
+    "main": "./src/index.ts",
     "scripts": {
         "test": "vitest",
-        "coverage": "vitest run --coverage"
+        "coverage": "vitest run --coverage",
+        "build": "vite build"
     },
     "author": "Edgar Armando Delgado Vega",
     "homepage": "https://github.com/edelveart/TypeScriptTonnetz",
@@ -22,6 +22,8 @@
         "typescript": "5.2.2"
     },
     "devDependencies": {
-        "vitest": "0.34.6"
+        "vite": "^5.0.10",
+        "vite-plugin-dts": "^3.7.0",
+        "vitest": "^1.1.1"
     }
 }

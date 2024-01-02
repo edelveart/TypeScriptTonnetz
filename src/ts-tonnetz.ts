@@ -1,4 +1,5 @@
 import { TonnetzSpaces, TriadChord, Tetrachord, TransformationFunctions, TransformationFunctionsSeventhChords, ChordGenerators, ObjectTransformations, ObjectTransformationsSeventhChords, TransformationTriadSeventhChords, ObjectTransformationsTriadSeventhChords } from "./tonnetz-types";
+import { safeMod } from "./utils";
 
 export const majorChordFromTonnetz = (rootNote: number, tonnetz: TonnetzSpaces): TriadChord => {
     const [a, b, c] = tonnetz;
@@ -363,7 +364,7 @@ export const h: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChor
     return targetTriadChord;
 }
 
-export const t: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
+export const t6: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
     const [a, b, c] = tonnetz;
     const modulo = a + b + c;
     const t: number = (2 * a);
@@ -1715,6 +1716,22 @@ export const chordFromTonnetz = (rootNote: number, chordType: string, tonnetz: T
     return CHORD_TYPES[chordType](rootNote, tonnetz);
 }
 
+export const AVAILABLETRANSFORMATIONS: { readonly [key: string]: readonly string[] } = {
+    "p": ["p", "1", "2"],
+    "l": ["l", "3", "4", "5"],
+    "r": ["r", "6", "7"],
+    "f": ["f"],
+    "n": ["n", "0"],
+    "s": ["s"],
+    "h": ["h"],
+    "t": ["t6"],
+    "q": ["8", "9"],
+    "N": ["N"],
+    "S": ["S"],
+    "E": ["E"],
+    "W": ["W"]
+};
+
 export const TRANSFORMATIONS: ObjectTransformations = {
     "p": parallelTransform,
     "l": leadingToneTransform,
@@ -1723,7 +1740,7 @@ export const TRANSFORMATIONS: ObjectTransformations = {
     "n": n,
     "s": s,
     "h": h,
-    "t": t,
+    "t": t6,
 
     "1": p32,
     "2": p41,
@@ -1740,7 +1757,7 @@ export const TRANSFORMATIONS: ObjectTransformations = {
     "S": southTransform,
     "E": eastTransform,
     "W": westTransform
-}
+};
 
 export const SEVENTHSTRANFORMATIONS: ObjectTransformationsSeventhChords = {
     "p12": p12,
@@ -1786,19 +1803,65 @@ export const getAvailableTransform = (transformations: ObjectTransformationsSeve
     return Object.keys(transformations).filter(key => key.includes(availableString));
 }
 
-export const AVAILABLESEVENTHSTRANSFORMATIONS: { readonly [key: string]: readonly string[] } = {
-    "7": ['p12', 'p14', 'r12', 'l13', 'l15', 'q15', 'qq51', 'n51', 'p18', 'p19', 'l71', 'rr19'],
-    "m7": ['p12', 'p23', 'r12', 'r23', 'r42', 'l42', 'p26', 'q62'],
-    "hdim7": ['p23', 'p35', 'r23', 'r35', 'r53', 'rr39', 'l13', 'q43', 'rr35', 'p39', 'r63', 'qq38'],
-    "maj7": ['p14', 'r42', 'l42', 'q43', 'p47', 'p64'],
-    "dim7": ['p35', 'r35', 'r53', 'l15', 'q15', 'rr35', 'qq51', 'n51'],
-    "minMaj7": ['p26', 'p64', 'r63', 'r76', 'r86', 'q62', 'q76'],
-    "maj7aug5": ['p47', 'p87', 'r76', 'l71', 'q76'],
-    "dom7aug5": ['p18', 'p87', 'p98', 'r86', 'l89', 'rr98', 'qq38', 'qq98'],
-    "dom7b5": ['p19', 'p39', 'p98', 'l89', 'rr19', 'rr39', 'rr98', 'qq98']
+export const AVAILABLESEVENTHSTRANSFORMATIONS: { readonly [key: string]: { readonly [key: string]: readonly string[] } } = {
+    "7": {
+        "p": ['p12', 'p14', 'p18', 'p19'],
+        "l": ['l13', 'l15', 'l71'],
+        "r": ['r12', 'rr19'],
+        "q": ['q15', 'qq51'],
+        "n": ['n51']
+    },
+    "m7": {
+        "p": ['p12', 'p23', 'p26'],
+        "l": ['l42'],
+        "r": ['r12', 'r23', 'r42'],
+        "q": ['q62']
+    },
+    "hdim7": {
+        "p": ['p23', 'p35', 'p39'],
+        "l": ['l13'],
+        "r": ['r23', 'r35', 'r53', 'r63', 'rr35', 'rr39'],
+        "q": ['q43', 'qq38']
+    },
+    "maj7": {
+        "p": ['p14', 'p47', 'p64'],
+        "l": ['l42'],
+        "r": ['r42'],
+        "q": ['q43']
+    },
+    "dim7": {
+        "p": ['p35'],
+        "l": ['l15'],
+        "r": ['r35', 'r53'],
+        "q": ['q15', 'qq51'],
+        "n": ['n51']
+    },
+    "minMaj7": {
+        "p": ['p26', 'p64'],
+        "r": ['r63', 'r76', 'r86'],
+        "q": ['q62', 'q76']
+    },
+    "maj7aug5": {
+        "p": ['p47', 'p87'],
+        "l": ['l71'],
+        "r": ['r76'],
+        "q": ['q76']
+    },
+    "dom7aug5": {
+        "p": ['p18', 'p87', 'p98'],
+        "l": ['l89'],
+        "r": ['r86', 'rr98'],
+        "q": ['qq38', 'qq98']
+    },
+    "dom7b5": {
+        "p": ['p19', 'p39', 'p98'],
+        "l": ['l89'],
+        "r": ['rr19', 'rr39', 'rr98'],
+        "q": ['qq98']
+    }
 };
 
-export const getAvailableSeventhsTransformations = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): readonly string[] | string => {
+export const getAvailableSeventhsTransformations = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): { readonly [key: string]: readonly string[] } => {
     for (const chordFunction of Object.keys(CHORD_TYPES_SEVENTHS)) {
         let chordCompare = CHORD_TYPES_SEVENTHS[chordFunction](chord[0], tonnetz);
         let arrayOfComparedValues: boolean[] = chord.map((item, index) => item === chordCompare[index]);
@@ -1807,7 +1870,7 @@ export const getAvailableSeventhsTransformations = (chord: Tetrachord, tonnetz: 
             return AVAILABLESEVENTHSTRANSFORMATIONS[chordFunction]
         }
     }
-    return `No transformations available`
+    return {}
 }
 
 export const randomSeventhTransformation = (chord: Tetrachord, tonnetz: TonnetzSpaces = [3, 4, 5]): Tetrachord => {
@@ -1817,7 +1880,9 @@ export const randomSeventhTransformation = (chord: Tetrachord, tonnetz: TonnetzS
         const isEachElementTrue: boolean = arrayOfComparedValues.every(item => item === true);
         if (isEachElementTrue) {
             const transformations = AVAILABLESEVENTHSTRANSFORMATIONS[chordFunction]
-            const randomTransformation = transformations[(Math.floor(Math.random() * transformations.length))]
+            // Pick random key
+            const transformKey = Object.keys(transformations)[(Math.floor(Math.random() * Object.keys(transformations).length))]
+            const randomTransformation = transformations[transformKey][(Math.floor(Math.random() * transformations[transformKey].length))]
             return SEVENTHSTRANFORMATIONS[randomTransformation](chord, tonnetz)
         }
     }
@@ -1845,7 +1910,10 @@ export const transform = (chord: TriadChord, transformation: string, tonnetz: To
     for (let i = 0; i < transformations.length; i++) {
         const validTransformation = transformations[i];
         if (validTransformation) {
-            transformedChord = TRANSFORMATIONS[validTransformation](transformedChord, tonnetz);
+            const parsedTransform = TRANSFORMATIONS[validTransformation];
+            if (parsedTransform) {
+                transformedChord = parsedTransform(transformedChord, tonnetz);
+            }
         }
     }
     return sortingTriadChord(transformedChord, tonnetz);
@@ -1874,6 +1942,50 @@ export const seventhsTransform = (chord: Tetrachord, transformation: string, ton
         if (validTransformation) {
             transformedChord = SEVENTHSTRANFORMATIONS[validTransformation](transformedChord, tonnetz);
         }
+    }
+    return transformedChord;
+}
+
+export const explorativeTransform = (chord: number[], transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): number[] => {
+    const regxp = new RegExp("([A-Za-z])([0-9]*)", "g");
+    let operations = regxp.exec(transformation);
+    if (!operations || operations && operations.length < 1) {
+        return chord;
+    }
+    let transformedChord: number[] = [...chordNotesToModN(chord)];
+    while (operations != null) {
+        if (transformedChord.length === 4) {
+            const chordTransformations = getAvailableSeventhsTransformations(transformedChord as Tetrachord);
+            if (chordTransformations) {
+                const transformOp = chordTransformations[operations[1]]
+                if (transformOp) {
+                    let operationIndex = 0;
+                    if (operations[2].length > 0) operationIndex = parseInt(operations[2]) - 1
+                    operationIndex = safeMod(operationIndex, transformOp.length);
+                    const parsedTransform = transformOp[operationIndex];
+                    transformedChord = SEVENTHSTRANFORMATIONS[parsedTransform](transformedChord as Tetrachord, tonnetz);
+                }
+            }
+        } else if (transformedChord.length === 3) {
+            const transformOp = AVAILABLETRANSFORMATIONS[operations[1]]
+            if (transformOp) {
+                if(operations[1] === "N" || operations[1] === "S" || operations[1] === "W" || operations[1] === "E") {
+                    // Handle cardinal operations
+                    let operationIndex = operations[2].length > 0 ? parseInt(operations[2]) : 1;
+                    operationIndex = operationIndex<=0 ? 1 : operationIndex;
+                    for(let i=0; i<operationIndex; i++) {
+                        transformedChord = TRANSFORMATIONS[operations[1]](transformedChord as TriadChord, tonnetz);
+                    }
+                } else {
+                    // Handle normal
+                    let operationIndex = operations[2].length > 0 ? parseInt(operations[2])-1 : 0;
+                    operationIndex = safeMod(operationIndex, transformOp.length);
+                    const parsedTransform = transformOp[operationIndex];
+                    transformedChord = TRANSFORMATIONS[parsedTransform](transformedChord as TriadChord, tonnetz);
+                }
+            }
+        }
+        operations = regxp.exec(transformation);
     }
     return transformedChord;
 }

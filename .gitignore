@@ -1,2 +1,24 @@
-/node_modules
-/package-lock.json
+# Dist & Dependencies
+node_modules
+dist
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.iml
+.vs
+dev-dist/**/*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
