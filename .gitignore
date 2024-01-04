@@ -17,6 +17,7 @@ yarn-error.log*
 *.iml
 .vs
 dev-dist/**/*
+package-lock.json
 
 # OS metadata
 .DS_Store

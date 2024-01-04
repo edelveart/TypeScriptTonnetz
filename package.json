@@ -13,7 +13,9 @@
     "scripts": {
         "test": "vitest",
         "coverage": "vitest run --coverage",
-        "build": "vite build"
+        "build": "vite build",
+        "log": "tsx ./src/ts-tonnetz.ts",
+        "repl": "tsx -e \"import('./src/ts-tonnetz.ts').then((tonnetz)=>{global.tonnetz = tonnetz})\" -i"
     },
     "author": "Edgar Armando Delgado Vega",
     "homepage": "https://github.com/edelveart/TypeScriptTonnetz",
@@ -22,6 +24,7 @@
         "typescript": "5.2.2"
     },
     "devDependencies": {
+        "tsx": "^4.7.0",
         "vite": "^5.0.10",
         "vite-plugin-dts": "^3.7.0",
         "vitest": "^1.1.1"
