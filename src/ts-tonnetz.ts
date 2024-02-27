@@ -2368,56 +2368,139 @@ export const AVAILABLESTTTRANSFORMATIONS: { readonly [key: string]: { readonly [
     }
 }
 
-export const surrealCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
+export const surrealCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
     const [a] = tonnetz;
     const cardinalArray: TriadChord[] = [];
 
-    for (let index = 0; index < elements * a; index += a) {
-        const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
-        cardinalArray.push(majorTriadsGroup);
+    if (clockwise === -1) {
+        for (let index = 0; index < elements * a; index += a) {
+            const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
+            cardinalArray.push(majorTriadsGroup);
+        }
+    } else if (clockwise === 1) {
+        for (let index = 0; index > elements * (-a); index -= a) {
+            const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
+            cardinalArray.push(majorTriadsGroup);
+        }
     }
     return cardinalArray;
 }
 
-export const scienceFictionCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
+export const scienceFictionCardinalPoints = (rootNote: number, clockwise = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
     const [a] = tonnetz;
     const cardinalArray: TriadChord[] = [];
-    for (let index = 0; index < elements * a; index += a) {
-        const majorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
-        cardinalArray.push(majorTriadsGroup);
+    if (clockwise === -1) {
+        for (let index = 0; index < elements * a; index += a) {
+            const majorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
+            cardinalArray.push(majorTriadsGroup);
+        }
+    } else if (clockwise === 1) {
+        for (let index = 0; index > elements * (-a); index -= a) {
+            const majorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
+            cardinalArray.push(majorTriadsGroup);
+        }
     }
     return cardinalArray;
 }
 
-export const magicCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
+export const epicSurrealCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
+    const cardinalArray: TriadChord[] = [];
+    const [north, west, south, east] = surrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    cardinalArray.push(north, south, west, east);
+    return cardinalArray;
+}
+
+export const epicScienceFictionCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
+    const cardinalArray: TriadChord[] = [];
+    const [north, west, south, east] = scienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    cardinalArray.push(north, south, west, east);
+    return cardinalArray;
+}
+
+export const magicCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
     const [a] = tonnetz;
     const cardinalArray: TriadChord[] = [];
     let parity = 0;
-    for (let index = 0; index < elements * a; index += a) {
-        if (parity % 2 == 0) {
-            const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
-            cardinalArray.push(majorTriadsGroup);
-        } else if (parity % 2 !== 0) {
-            const minorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
-            cardinalArray.push(minorTriadsGroup);
+    if (clockwise === -1) {
+        for (let index = 0; index < elements * a; index += a) {
+            if (parity % 2 == 0) {
+                const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
+                cardinalArray.push(majorTriadsGroup);
+            } else if (parity % 2 !== 0) {
+                const minorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
+                cardinalArray.push(minorTriadsGroup);
+            }
+            ++parity;
         }
-        ++parity;
+    } else if (clockwise === 1) {
+        for (let index = 0; index > elements * (-a); index -= a) {
+            if (parity % 2 == 0) {
+                const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
+                cardinalArray.push(majorTriadsGroup);
+            } else if (parity % 2 !== 0) {
+                const minorTriadsGroup = chordNotesToModN(minorChordFromTonnetz(rootNote + index, tonnetz));
+                cardinalArray.push(minorTriadsGroup);
+            }
+            ++parity;
+        }
     }
     return cardinalArray;
 }
 
-export const epicSurrealCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
+export const epicMixtureMinMajCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
     const cardinalArray: TriadChord[] = [];
-    const [north, west, south, east] = surrealCardinalPoints(rootNote, tonnetz);
-    cardinalArray.push(north, south, west, east);
+    const [northMin, , westMin,] = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    const [, southMaj, , eastMaj] = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    cardinalArray.push(northMin, southMaj, westMin, eastMaj)
     return cardinalArray;
 }
 
-export const epicScienceFictionCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
+export const epicMixtureMajMinCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
     const cardinalArray: TriadChord[] = [];
-    const [north, west, south, east] = scienceFictionCardinalPoints(rootNote, tonnetz);
-    cardinalArray.push(north, south, west, east);
+    const [northMaj, , westMaj,] = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    const [, southMin, , eastMin] = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+    cardinalArray.push(northMaj, southMin, westMaj, eastMin)
     return cardinalArray;
+}
+
+export const poleBonding = (lastChord: TriadChord[]): number[] => {
+    const size = lastChord.length - 1;
+    const newRootNote = lastChord[size][0];
+    const majorOrMinor = lastChord[size][1] - newRootNote;
+    return [newRootNote, majorOrMinor];
+}
+
+type diagCrossEmotion = "surreal" | "scienceFiction" | "epicSurreal" | "epicScienceFiction" | "magic"
+type fnsCardinalPoints = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces, elements: number) => TriadChord[]
+
+type objectCardinalPoints = {
+    "surreal": fnsCardinalPoints
+    "scienceFiction": fnsCardinalPoints,
+    "magic": fnsCardinalPoints,
+    "epicSurreal": fnsCardinalPoints,
+    "epicScienceFiction": fnsCardinalPoints,
+    "epicMajMin": fnsCardinalPoints,
+    "epicMinMaj": fnsCardinalPoints
+}
+
+export const genCardinalPoints = (
+    rootNote: number,
+    diagCross: diagCrossEmotion = "surreal",
+    clockwise: number = -1,
+    tonnetz: TonnetzSpaces = [3, 4, 5],
+    elements: number = 4
+): TriadChord[] => {
+
+    const applyFn: objectCardinalPoints = {
+        "surreal": surrealCardinalPoints,
+        "scienceFiction": scienceFictionCardinalPoints,
+        "magic": magicCardinalPoints,
+        "epicSurreal": epicSurrealCardinalPoints,
+        "epicScienceFiction": surrealCardinalPoints,
+        "epicMajMin": surrealCardinalPoints,
+        "epicMinMaj": surrealCardinalPoints
+    }
+    return applyFn[diagCross](rootNote, clockwise, tonnetz, elements);
 }
 
 export const surrealTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 3): TriadChord[] => {
@@ -2455,66 +2538,4 @@ export const magicTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces =
         ++parity;
     }
     return triangularArray;
-}
-
-export const epicMixtureMinMajCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
-    const [a] = tonnetz;
-    const cardinalArray: TriadChord[] = [];
-    const north = chordNotesToModN(minorChordFromTonnetz(rootNote, tonnetz));
-    const south = chordNotesToModN(majorChordFromTonnetz(rootNote + 2 * a, tonnetz));
-    const west = chordNotesToModN(minorChordFromTonnetz(rootNote + a, tonnetz));
-    const east = chordNotesToModN(majorChordFromTonnetz(rootNote - a, tonnetz));
-    cardinalArray.push(north, south, west, east);
-    return cardinalArray;
-}
-
-export const epicMixtureMajMinCardinalPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
-    const [a] = tonnetz;
-    const cardinalArray: TriadChord[] = [];
-    const north = chordNotesToModN(majorChordFromTonnetz(rootNote, tonnetz));
-    const south = chordNotesToModN(minorChordFromTonnetz(rootNote + 2 * a, tonnetz));
-    const west = chordNotesToModN(majorChordFromTonnetz(rootNote + a, tonnetz));
-    const east = chordNotesToModN(minorChordFromTonnetz(rootNote - a, tonnetz));
-    cardinalArray.push(north, south, west, east);
-    return cardinalArray;
-}
-
-export const minMajCardinalTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
-    const [a, b] = tonnetz;
-    const graphArray: TriadChord[][] = [];
-
-    const minorTriadsGroup = scienceFictionCardinalPoints(rootNote, tonnetz)
-    graphArray.push(minorTriadsGroup);
-    for (let index = 0; index < 5; ++index) {
-        if (index % 2 === 0) {
-            rootNote -= a
-            const majorTriadsGroup = surrealTriangularPoints(rootNote, tonnetz)
-            graphArray.push(majorTriadsGroup);
-        } else {
-            rootNote -= b
-            const minorTriadsGroup = scienceFictionCardinalPoints(rootNote, tonnetz)
-            graphArray.push(minorTriadsGroup)
-        }
-    }
-    return graphArray.flat();
-}
-
-export const majMinCardinalTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
-    const [a, b] = tonnetz;
-    const graphArray: TriadChord[][] = [];
-
-    const majorTriadsGroup = surrealCardinalPoints(rootNote, tonnetz)
-    graphArray.push(majorTriadsGroup);
-    for (let index = 0; index < 5; ++index) {
-        if (index % 2 === 0) {
-            rootNote -= a
-            const minorTriadsGroup = scienceFictionTriangularPoints(rootNote, tonnetz)
-            graphArray.push(minorTriadsGroup);
-        } else {
-            rootNote -= b
-            const majorTriadsGroup = surrealCardinalPoints(rootNote, tonnetz)
-            graphArray.push(majorTriadsGroup)
-        }
-    }
-    return graphArray.flat();
 }
