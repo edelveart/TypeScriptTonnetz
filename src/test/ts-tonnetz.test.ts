@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance, hamiltonianCycle8, hamiltonianCycle7 } from '../ts-tonnetz';
+import { boretzRegions, enneaCycles, hexaCycles, l1d, l4m, octaCycles, octaTowerLeft, octaTowerRight, octaTower, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, seventhsTransform, transform, weitzmannRegions, z5d, hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, powerTowers, cubeDance, hamiltonianCycle8, hamiltonianCycle7, genCardinalPoints, genTriangularPoints, genCardinalTriangularGraph } from '../ts-tonnetz';
 
 
 describe('tonnetz-tests', () => {
@@ -851,5 +851,132 @@ describe('tonnetz-tests', () => {
             [2, 6, 9], [6, 9, 1],
             [9, 1, 4], [9, 0, 4]
         ]);
+    });
+
+    it('CardinalPoints and Axial System', () => {
+        expect(genCardinalPoints(0)).toEqual(
+            [[0, 4, 7], [3, 7, 10], [6, 10, 1], [9, 1, 4]]
+        );
+        expect(genCardinalPoints(0, "surreal", 1)).toEqual(
+            [[0, 4, 7], [9, 1, 4], [6, 10, 1], [3, 7, 10]]
+        );
+        expect(genCardinalPoints(0, "magic")).toEqual(
+            [[0, 4, 7], [3, 6, 10], [6, 10, 1], [9, 0, 4]]
+        );
+        expect(genCardinalPoints(0, "epicSurreal")).toEqual(
+            [[0, 4, 7], [6, 10, 1], [3, 7, 10], [9, 1, 4]]
+        );
+        expect(genCardinalPoints(0, "epicScienceFiction")).toEqual(
+            [[0, 4, 7], [3, 7, 10], [6, 10, 1], [9, 1, 4]]
+        );
+        expect(genCardinalPoints(0, "epicMajMin")).toEqual(
+            [[0, 4, 7], [6, 9, 1], [3, 7, 10], [9, 0, 4]]
+        );
+        expect(genCardinalPoints(0, "epicMinMaj")).toEqual(
+            [[0, 3, 7], [6, 10, 1], [3, 6, 10], [9, 1, 4]]
+        );
+        expect(genCardinalPoints(0, "epicMinMaj", 1)).toEqual(
+            [[0, 3, 7], [6, 10, 1], [9, 0, 4], [3, 7, 10]]
+        );
+    });
+
+    it('TriangularPoints', () => {
+        expect(genTriangularPoints(0, "surreal", 1)).toEqual(
+            [[0, 4, 7], [8, 0, 3], [4, 8, 11]]
+        );
+        expect(genTriangularPoints(6, "scienceFiction")).toEqual(
+            [[6, 9, 1], [10, 1, 5], [2, 5, 9]]
+        );
+        expect(genTriangularPoints(6, "magic")).toEqual(
+            [[6, 9, 1], [10, 2, 5], [2, 5, 9]]
+        );
+    });
+
+    it('cardinalTriangular Graphs', () => {
+        expect(genCardinalTriangularGraph(0, "Mm")).toEqual(
+            [
+                [0, 4, 7], [3, 7, 10], [6, 10, 1],
+                [9, 1, 4], [9, 0, 4], [1, 4, 8],
+                [5, 8, 0], [5, 9, 0], [8, 0, 3],
+                [11, 3, 6], [2, 6, 9], [2, 5, 9],
+                [6, 9, 1], [10, 1, 5], [10, 2, 5],
+                [1, 5, 8], [4, 8, 11], [7, 11, 2],
+                [7, 10, 2], [11, 2, 6], [3, 6, 10],
+                [3, 7, 10], [6, 10, 1], [9, 1, 4],
+                [0, 4, 7], [0, 3, 7], [4, 7, 11],
+                [8, 11, 3]
+            ]
+        );
+
+        expect(genCardinalTriangularGraph(0, "Mm", 1)).toEqual(
+            [
+                [0, 4, 7], [9, 1, 4], [6, 10, 1],
+                [3, 7, 10], [3, 6, 10], [11, 2, 6],
+                [7, 10, 2], [7, 11, 2], [4, 8, 11],
+                [1, 5, 8], [10, 2, 5], [10, 1, 5],
+                [6, 9, 1], [2, 5, 9], [2, 6, 9],
+                [11, 3, 6], [8, 0, 3], [5, 9, 0],
+                [5, 8, 0], [1, 4, 8], [9, 0, 4],
+                [9, 1, 4], [6, 10, 1], [3, 7, 10],
+                [0, 4, 7], [0, 3, 7], [8, 11, 3],
+                [4, 7, 11]
+            ]
+        );
+        expect(genCardinalTriangularGraph(4, "epicSFSurreal")).toEqual(
+            [
+                [4, 7, 11], [10, 1, 5], [7, 10, 2],
+                [1, 4, 8], [1, 5, 8], [5, 9, 0],
+                [9, 1, 4], [9, 0, 4], [3, 6, 10],
+                [0, 3, 7], [6, 9, 1], [6, 10, 1],
+                [10, 2, 5], [2, 6, 9], [2, 5, 9],
+                [8, 11, 3], [5, 8, 0], [11, 2, 6],
+                [11, 3, 6], [3, 7, 10], [7, 11, 2],
+                [7, 10, 2], [1, 4, 8], [10, 1, 5],
+                [4, 7, 11], [4, 8, 11], [8, 0, 3],
+                [0, 4, 7]
+            ]
+        );
+        expect(genCardinalTriangularGraph(4, "epicSurrealSF", 1)).toEqual(
+            [
+                [4, 8, 11], [10, 2, 5], [1, 5, 8],
+                [7, 11, 2], [7, 10, 2], [3, 6, 10],
+                [11, 2, 6], [11, 3, 6], [5, 9, 0],
+                [8, 0, 3], [2, 6, 9], [2, 5, 9],
+                [10, 1, 5], [6, 9, 1], [6, 10, 1],
+                [0, 4, 7], [3, 7, 10], [9, 1, 4],
+                [9, 0, 4], [5, 8, 0], [1, 4, 8],
+                [1, 5, 8], [7, 11, 2], [10, 2, 5],
+                [4, 8, 11], [4, 7, 11], [0, 3, 7],
+                [8, 11, 3]
+            ]
+        );
+        expect(genCardinalTriangularGraph(4, "epicMixMajMin", 1)).toEqual(
+            [
+                [4, 8, 11], [10, 1, 5], [1, 5, 8],
+                [7, 10, 2], [7, 11, 2], [3, 7, 10],
+                [11, 3, 6], [11, 2, 6], [5, 9, 0],
+                [8, 11, 3], [2, 6, 9], [2, 5, 9],
+                [10, 1, 5], [6, 9, 1], [6, 10, 1],
+                [0, 3, 7], [3, 7, 10], [9, 0, 4],
+                [9, 1, 4], [5, 9, 0], [1, 5, 8],
+                [1, 4, 8], [7, 11, 2], [10, 1, 5],
+                [4, 8, 11], [4, 7, 11], [0, 3, 7],
+                [8, 11, 3]
+            ]
+        );
+        expect(genCardinalTriangularGraph(2, "epicMixMinMaj")).toEqual(
+            [
+                [2, 5, 9], [8, 0, 3], [5, 8, 0],
+                [11, 3, 6], [11, 2, 6], [3, 6, 10],
+                [7, 10, 2], [7, 11, 2], [1, 4, 8],
+                [10, 2, 5], [4, 7, 11], [4, 8, 11],
+                [8, 0, 3], [0, 4, 7], [0, 3, 7],
+                [6, 10, 1], [3, 6, 10], [9, 1, 4],
+                [9, 0, 4], [1, 4, 8], [5, 8, 0],
+                [5, 9, 0], [11, 2, 6], [8, 0, 3],
+                [2, 5, 9], [2, 6, 9], [6, 10, 1],
+                [10, 2, 5]
+            ]
+        );
     });
 })
