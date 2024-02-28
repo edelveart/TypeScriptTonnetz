@@ -2483,6 +2483,16 @@ type objectCardinalPoints = {
     "epicMinMaj": fnsCardinalPoints
 }
 
+const applyFn: objectCardinalPoints = {
+    "surreal": surrealCardinalPoints,
+    "scienceFiction": scienceFictionCardinalPoints,
+    "magic": magicCardinalPoints,
+    "epicSurreal": epicSurrealCardinalPoints,
+    "epicScienceFiction": surrealCardinalPoints,
+    "epicMajMin": surrealCardinalPoints,
+    "epicMinMaj": surrealCardinalPoints
+}
+
 export const genCardinalPoints = (
     rootNote: number,
     diagCross: diagCrossEmotion = "surreal",
@@ -2490,16 +2500,6 @@ export const genCardinalPoints = (
     tonnetz: TonnetzSpaces = [3, 4, 5],
     elements: number = 4
 ): TriadChord[] => {
-
-    const applyFn: objectCardinalPoints = {
-        "surreal": surrealCardinalPoints,
-        "scienceFiction": scienceFictionCardinalPoints,
-        "magic": magicCardinalPoints,
-        "epicSurreal": epicSurrealCardinalPoints,
-        "epicScienceFiction": surrealCardinalPoints,
-        "epicMajMin": surrealCardinalPoints,
-        "epicMinMaj": surrealCardinalPoints
-    }
     return applyFn[diagCross](rootNote, clockwise, tonnetz, elements);
 }
 
@@ -2581,18 +2581,122 @@ export const cardinalSurrealTriangularSFGraph = (rootNote: number, clockwise: nu
     return graphArray.flat();
 }
 
-export const genCardinalTriangularGraph = (
-    rootNote: number,
-    diagCross: string = "Mm",
-    clockwise: number = -1,
-    tonnetz: TonnetzSpaces = [3, 4, 5],
-    elements: number = 4,
-    reps: number = 7
-): TriadChord[] => {
-    if (diagCross === "mM") {
-        return cardinalSFTriangularSurrealGraph(rootNote, clockwise, tonnetz, elements, reps);
+export const cardinalEpicSFTriangularSurrealGraph = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4, reps: number = 7): TriadChord[] => {
+    const [a, b] = tonnetz;
+    const graphArray: TriadChord[][] = [];
+
+    const minorTriadsGroup = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements)
+    graphArray.push(minorTriadsGroup);
+    for (let index = 0; index < reps; ++index) {
+        if (index % 2 === 0) {
+            if (clockwise === -1) rootNote -= a;
+            else if (clockwise === 1) rootNote += a;
+            const majorTriadsGroup = surrealTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+            graphArray.push(majorTriadsGroup);
+        } else {
+            if (clockwise === -1) rootNote -= b;
+            else if (clockwise === 1) rootNote += b;
+            const minorTriadsGroup = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements)
+            graphArray.push(minorTriadsGroup)
+        }
     }
-    return cardinalSurrealTriangularSFGraph(rootNote, clockwise, tonnetz, elements, reps);
+    return graphArray.flat();
+}
+
+export const cardinalEpicSurrealTriangularSFGraph = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4, reps: number = 7): TriadChord[] => {
+    const [a, b] = tonnetz;
+    const graphArray: TriadChord[][] = [];
+
+    const minorTriadsGroup = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements)
+    graphArray.push(minorTriadsGroup);
+    for (let index = 0; index < reps; ++index) {
+        if (index % 2 === 0) {
+            if (clockwise === -1) rootNote -= a;
+            else if (clockwise === 1) rootNote += a;
+            const majorTriadsGroup = scienceFictionTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+            graphArray.push(majorTriadsGroup);
+        } else {
+            if (clockwise === -1) rootNote -= b;
+            else if (clockwise === 1) rootNote += b;
+            const minorTriadsGroup = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements)
+            graphArray.push(minorTriadsGroup)
+        }
+    }
+    return graphArray.flat();
+}
+
+export const epicMajMinCardinalTriangularGraph = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4, reps: number = 7): TriadChord[] => {
+    const [a, b] = tonnetz;
+    const graphArray: TriadChord[][] = [];
+
+    const minorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements)
+    graphArray.push(minorTriadsGroup);
+    let acc = 0;
+    for (let index = 0; index < reps; ++index) {
+        if (index % 2 === 0) {
+            if (clockwise === -1) rootNote -= a;
+            else if (clockwise === 1) rootNote += a;
+
+            if (acc % 2 === 0) {
+                const majorTriadsGroup = surrealTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+                graphArray.push(majorTriadsGroup);
+            } else if (acc % 2 === 1) {
+                const minorTriadsGroup = scienceFictionTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+                graphArray.push(minorTriadsGroup);
+            }
+        }
+        else if (index % 2 === 1) {
+            if (clockwise === -1) rootNote -= b;
+            else if (clockwise === 1) rootNote += b;
+
+            if (acc % 2 === 0) {
+                const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements)
+                graphArray.push(minorTriadsGroup)
+            } else if (acc % 2 === 1) {
+                const majorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements)
+                graphArray.push(majorTriadsGroup)
+            }
+        }
+        acc += index;
+    }
+    return graphArray.flat();
+}
+
+export const epicMinMajCardinalTriangularGraph = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4, reps: number = 7): TriadChord[] => {
+    const [a, b] = tonnetz;
+    const graphArray: TriadChord[][] = [];
+
+    const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements)
+    graphArray.push(minorTriadsGroup);
+    let acc = 0;
+    for (let index = 0; index < reps; ++index) {
+        if (index % 2 === 0) {
+            if (clockwise === -1) rootNote -= a;
+            else if (clockwise === 1) rootNote += a;
+
+            if (acc % 2 === 0) {
+                const minorTriadsGroup = scienceFictionTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+                graphArray.push(minorTriadsGroup);
+            } else if (acc % 2 === 1) {
+                const majorTriadsGroup = surrealTriangularPoints(rootNote, clockwise, tonnetz, elements - 1)
+                graphArray.push(majorTriadsGroup);
+            }
+        }
+        else if (index % 2 === 1) {
+            if (clockwise === -1) rootNote -= b;
+            else if (clockwise === 1) rootNote += b;
+
+            if (acc % 2 === 0) {
+                const majorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements)
+                graphArray.push(majorTriadsGroup)
+            } else if (acc % 2 === 1) {
+                const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements)
+                graphArray.push(minorTriadsGroup)
+            }
+        }
+        acc += index;
+    }
+    return graphArray.flat();
 }
 
 export const magicTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 3): TriadChord[] => {
@@ -2610,4 +2714,35 @@ export const magicTriangularPoints = (rootNote: number, tonnetz: TonnetzSpaces =
         ++parity;
     }
     return triangularArray;
+}
+
+type diagCrossGraphs = "Mm" | "mM" | "epicSFSurreal" | "epicSurrealSF" | "epicMixMajMin" | "epicMixMinMaj"
+type graphFns = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces, elements: number, reps: number) => TriadChord[]
+type cardTriaGraphsTypes = {
+    "Mm": graphFns,
+    "mM": graphFns,
+    "epicSFSurreal": graphFns,
+    "epicSurrealSF": graphFns,
+    "epicMixMajMin": graphFns,
+    "epicMixMinMaj": graphFns
+}
+
+const cardinalTriangularGraphs: cardTriaGraphsTypes = {
+    "Mm": cardinalSurrealTriangularSFGraph,
+    "mM": cardinalSFTriangularSurrealGraph,
+    "epicSFSurreal": cardinalEpicSFTriangularSurrealGraph,
+    "epicSurrealSF": cardinalEpicSurrealTriangularSFGraph,
+    "epicMixMajMin": epicMajMinCardinalTriangularGraph,
+    "epicMixMinMaj": epicMinMajCardinalTriangularGraph
+};
+
+export const genCardinalTriangularGraph = (
+    rootNote: number,
+    diagCross: diagCrossGraphs = "Mm",
+    clockwise: number = -1,
+    tonnetz: TonnetzSpaces = [3, 4, 5],
+    elements: number = 4,
+    reps: number = 7
+): TriadChord[] => {
+    return cardinalTriangularGraphs[diagCross](rootNote, clockwise, tonnetz, elements, reps);
 }
