@@ -2470,7 +2470,7 @@ export const poleBonding = (lastChord: TriadChord[]): number[] => {
     return [newRootNote, majorOrMinor];
 }
 
-type diagCrossEmotion = "surreal" | "scienceFiction" | "epicSurreal" | "epicScienceFiction" | "magic"
+type diagCrossEmotion = "surreal" | "scienceFiction" | "epicSurreal" | "epicScienceFiction" | "magic" | "epicMajMin" | "epicMinMaj"
 type fnsCardinalOrTriangularPoints = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces, elements: number) => TriadChord[]
 
 type objectCardinalPoints = {
@@ -2489,8 +2489,8 @@ const applyCardinalFn: objectCardinalPoints = {
     "magic": magicCardinalPoints,
     "epicSurreal": epicSurrealCardinalPoints,
     "epicScienceFiction": surrealCardinalPoints,
-    "epicMajMin": surrealCardinalPoints,
-    "epicMinMaj": surrealCardinalPoints
+    "epicMajMin": epicMixtureMajMinCardinalPoints,
+    "epicMinMaj": epicMixtureMinMajCardinalPoints
 }
 
 export const genCardinalPoints = (
@@ -2746,8 +2746,6 @@ export const epicMinMajCardinalTriangularGraph = (rootNote: number, clockwise: n
     }
     return graphArray.flat();
 }
-
-
 
 type diagCrossGraphs = "Mm" | "mM" | "epicSFSurreal" | "epicSurrealSF" | "epicMixMajMin" | "epicMixMinMaj"
 type graphFns = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces, elements: number, reps: number) => TriadChord[]
