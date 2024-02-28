@@ -15,10 +15,10 @@ Transformations and functions follow the edge flip between triangles and their g
 - [x] Weitzmann Regions, Boretz Regions, OctaTowers
 - [x] Cube Dance, Power Towers
 
-Mathematical inspiration (`Trajectoires`) in the Doctoral thesis:
+Mathematical inspiration (`Trajectoires`) in the Doctoral thesis written by [**Louis Bigo**](https://theses.hal.science/tel-01326827):
 
 ```text
-Représentations symboliques musicales et calcul spatial (Louis Bigo, 2013).
+Représentations symboliques musicales et calcul spatial (2013).
 ```
 
 ## Dual geometry of the Tonnetz
@@ -67,9 +67,9 @@ A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
-### Extensions of the Axial System in Béla Bartók
+### Extensions of the Axis System in Béla Bartók
 
-Generalized implementation on any Tonnetz of the **harmonic groups of axial system**: Tonic (8 chords), Subdominant (8 chords), and Dominant (8 chords). The parameters specify two directions, sought emotion (based on the ideas of [**Mauro de Maria**](https://www.youtube.com/watch?v=EhmbTaEKUZo)), cross or diagonal movement. Major-minor and minor-major alternation available for cross path.
+Generalized implementation on any Tonnetz of the harmonic groups of **axis system** ideaded by [**Ernő Lendvai**](http://www.harmonicwheel.com/bartok_axes.pdf): Tonic (8 chords), Subdominant (8 chords), and Dominant (8 chords). The parameters specify two directions, sought emotion (based on the ideas of [**Mauro de Maria**](https://www.youtube.com/watch?v=EhmbTaEKUZo)), cross or diagonal movement. Major-minor and minor-major alternation available for cross path.
 
 The manipulation can be done using a single function:
 * `genCardinalPoints()`
