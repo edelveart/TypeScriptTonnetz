@@ -67,6 +67,20 @@ A Generalized Dual of the Tonnetz for Seventh Chords:
 Mathematical, Computational and Compositional Aspects
 (Sonia Cannas and Moreno Andreatta, 2018).
 ```
+### Extensions of the Axial System in Béla Bartók
+
+Generalized implementation on any Tonnetz of the **harmonic groups of axial system**: Tonic (8 chords), Subdominant (8 chords), and Dominant (8 chords). The parameters specify two directions, sought emotion (based on the ideas of [**Mauro de Maria**](https://www.youtube.com/watch?v=EhmbTaEKUZo)), cross or diagonal movement. Major-minor and minor-major alternation available for cross path.
+
+The manipulation can be done using a single function:
+* `genCardinalPoints()`
+
+Groups with chord roots separated by major thirds (which we will call triangular) are also added.
+* `genTriangularPoints()`
+
+We added **six new graphs** generalized inspired by the idea of cardinal points (extension of the axial system) for film music by Mauro de Maria. These graphs link the groups of cardinal points with the groups of three chords.
+
+Each graph can be manipulated from a single function:
+* `genCardinalTriangularGraph()`
 
 ## Contributing
 
