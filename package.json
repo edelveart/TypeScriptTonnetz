@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "ts-tonnetz",
-    "version": "0.0.84",
+    "version": "0.0.85",
     "description": "TypeScript Tonnetz is a set of structures and functions from mathematical music theory",
     "keywords": [
         "tonnetz",
