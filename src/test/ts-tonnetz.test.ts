@@ -669,6 +669,8 @@ describe('tonnetz-tests', () => {
 
     it('seventhTransformations to normal form. Returns the same chord if the transformation is not supported.', () => {
 
+        expect(seventhsTransform([0, 4, 7, 10], "")).toEqual([0, 4, 7, 10])
+        expect(seventhsTransform([0, 4, 7, 10], "x o l")).toEqual([0, 4, 7, 10])
         expect(seventhsTransform([0, 4, 7, 10], "p12")).toEqual([0, 3, 7, 10])
         expect(seventhsTransform([0, 4, 7, 10], "p14")).toEqual([0, 4, 7, 11])
         expect(seventhsTransform([0, 4, 7, 10], "r12")).toEqual([9, 0, 4, 7])
@@ -693,7 +695,6 @@ describe('tonnetz-tests', () => {
         expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15n51l13")).toEqual([3, 6, 9, 1])
         expect(seventhsTransform([0, 4, 7, 10], "p14r42l42q43rr35qq51l15n51l13r23")).toEqual([6, 9, 1, 4])
 
-        expect(seventhsTransform([0, 4, 7, 10], "p18")).toEqual([0, 4, 8, 10])
         expect(seventhsTransform([0, 4, 8, 10], "p18")).toEqual([0, 4, 7, 10])
         expect(seventhsTransform([0, 4, 7, 10], "p19")).toEqual([0, 4, 6, 10])
         expect(seventhsTransform([0, 4, 6, 10], "p19")).toEqual([0, 4, 7, 10])

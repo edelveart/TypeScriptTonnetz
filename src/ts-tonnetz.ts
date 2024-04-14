@@ -1913,9 +1913,14 @@ export const seventhsTransformWithoutRegex = (chord: Tetrachord, transformation:
     return transformedChord;
 }
 
+const keyFunctions = Object.keys(SEVENTHSTRANFORMATIONS);
+const regexUnion = keyFunctions.join("|");
+
 export const seventhsTransform = (chord: Tetrachord, transformation: string, tonnetz: TonnetzSpaces = [3, 4, 5]): Tetrachord => {
-    const transformations = transformation.match(/([a-z]{1,2}[0-9]*)/g);
-    if (!transformations || transformations && transformations.length < 1) {
+    const regexSearch = new RegExp(regexUnion, 'g');
+    const transformations = transformation.match(regexSearch);
+
+    if (transformations === null || transformations && transformations.length < 1) {
         return chord;
     }
     let transformedChord: Tetrachord = [...chord];
