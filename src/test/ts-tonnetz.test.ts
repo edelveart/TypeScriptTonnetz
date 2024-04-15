@@ -684,8 +684,6 @@ describe('tonnetz-tests', () => {
         expect(seventhsTransform([0, 3, 6, 9], "l42")).toEqual([0, 3, 6, 9])
         expect(seventhsTransform([0, 3, 6, 10], "qq51")).toEqual([0, 3, 6, 10])
         expect(seventhsTransform([0, 4, 7, 10], "p35")).toEqual([0, 4, 7, 10])
-        expect(seventhsTransform([0, 4, 7, 10], "n51")).toEqual([7, 10, 1, 4])
-        expect(seventhsTransform([5, 9, 0, 3], "n51")).toEqual([0, 3, 6, 9])
 
         expect(seventhsTransform([0, 4, 7, 10], "p14r42")).toEqual([9, 0, 4, 7])
         expect(seventhsTransform([0, 4, 7, 10], "p14r42l42")).toEqual([5, 9, 0, 4])
@@ -732,6 +730,8 @@ describe('tonnetz-tests', () => {
 
         expect(seventhsTransform([0, 4, 7, 10], "rr19")).toEqual([6, 10, 0, 4])
         expect(seventhsTransform([6, 10, 0, 4], "rr19")).toEqual([0, 4, 7, 10])
+        expect(seventhsTransform([0, 4, 6, 10], "rr39")).toEqual([6, 9, 0, 4])
+        expect(seventhsTransform([0, 3, 6, 10], "rr39")).toEqual([6, 10, 0, 4])
         expect(seventhsTransform([0, 4, 6, 10], "rr98")).toEqual([6, 10, 2, 4])
         expect(seventhsTransform([6, 10, 2, 4], "rr98")).toEqual([0, 4, 6, 10])
 
@@ -739,6 +739,9 @@ describe('tonnetz-tests', () => {
         expect(seventhsTransform([2, 6, 10, 0], "qq38")).toEqual([0, 3, 6, 10])
         expect(seventhsTransform([0, 4, 6, 10], "qq98")).toEqual([2, 6, 10, 0])
         expect(seventhsTransform([2, 6, 10, 0], "qq98")).toEqual([0, 4, 6, 10])
+
+        expect(seventhsTransform([0, 4, 7, 10], "n51")).toEqual([7, 10, 1, 4])
+        expect(seventhsTransform([5, 9, 0, 3], "n51")).toEqual([0, 3, 6, 9])
     })
 
     it('Hamiltonian Cycles', () => {
