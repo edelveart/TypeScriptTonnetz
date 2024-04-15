@@ -684,6 +684,8 @@ describe('tonnetz-tests', () => {
         expect(seventhsTransform([0, 3, 6, 9], "l42")).toEqual([0, 3, 6, 9])
         expect(seventhsTransform([0, 3, 6, 10], "qq51")).toEqual([0, 3, 6, 10])
         expect(seventhsTransform([0, 4, 7, 10], "p35")).toEqual([0, 4, 7, 10])
+        expect(seventhsTransform([0, 4, 7, 10], "n51")).toEqual([7, 10, 1, 4])
+        expect(seventhsTransform([5, 9, 0, 3], "n51")).toEqual([0, 3, 6, 9])
 
         expect(seventhsTransform([0, 4, 7, 10], "p14r42")).toEqual([9, 0, 4, 7])
         expect(seventhsTransform([0, 4, 7, 10], "p14r42l42")).toEqual([5, 9, 0, 4])
