@@ -1,5 +1,7 @@
 # TypeScript Tonnetz
 
+![NPM Version](https://img.shields.io/npm/v/ts-tonnetz)
+
 TypeScript Tonnetz is a set of functions and operations from Mathematical Music Theory (transformational approach). Specifically, it deals with Tonnetz spaces and functions related to the topic.
 The objective is not musicological analysis itself, but the application of these tools born from analysis for algorithmic composition and live coding.
 
