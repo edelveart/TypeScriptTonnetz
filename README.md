@@ -91,3 +91,7 @@ Each graph can be manipulated from a single function:
 - Refactor (`refactor: <...>`)
 - Testing (`test: <...>`)
 - Documentation (`docs: <...>`)
+
+## License
+
+[MIT License](https://github.com/edelveart/TypeScriptTonnetz/blob/main/LICENSE)
