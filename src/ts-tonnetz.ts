@@ -17,41 +17,41 @@ import {
 } from "./core/chord-constructors";
 
 import { safeMod, firstChordComparison, secondChordComparison, sortingTriadChord, chordNotesToModN } from "./core/utils";
-import { triadTransformationFn, tetraTransformationFn } from "./core/transform-functions";
+import { PLRFilmTransformationFn, PLRQExtendedTransformationFn, PLRStarTransformationFn } from "./core/transform-functions";
 
 export const parallelTransform: TransformationFunctions = (chordFromTonnetz, tonnetz) => {
-  return triadTransformationFn(chordFromTonnetz, tonnetz, 0, 0);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, 0, 0);
 };
 
 export const leadingToneTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, +b, -b);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, +b, -b);
 };
 
 export const relativeTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, -a, +a);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, -a, +a);
 };
 
 export const f: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
 
-  return triadTransformationFn(chordFromTonnetz, tonnetz, a + b, -(a + b));
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, a + b, -(a + b));
 };
 
 export const n: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [, , c] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, c, -c);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, c, -c);
 };
 
 export const s: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, b - a, -(b - a));
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, b - a, -(b - a));
 };
 
 export const h: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, 2 * b, -(2 * b));
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, 2 * b, -(2 * b));
 };
 
 export const t6: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
@@ -77,400 +77,247 @@ export const t6: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadCho
 export const northTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
 
-  return triadTransformationFn(chordFromTonnetz, tonnetz, b, a);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, b, a);
 };
 
 export const southTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, -a, -b);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, -a, -b);
 };
 
 export const eastTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, b - a, 0);
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, b - a, 0);
 };
 
 export const westTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
-  return triadTransformationFn(chordFromTonnetz, tonnetz, 0, -(b - a));
+  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, 0, -(b - a));
 };
 
 //////////////////////////
 /////////////////////////
 export const p12: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, minorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, minorSeventhChord, 0, 0);
 };
 
 export const p14: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, majorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, majorSeventhChord, 0, 0);
 };
 
 export const p23: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, halfDiminishedChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, halfDiminishedChord, 0, 0);
 };
 
 export const p35: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, 0, 0);
 };
 
 export const r12: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, minorSeventhChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, minorSeventhChord, -a, a);
 };
 
 export const r23: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, halfDiminishedChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, halfDiminishedChord, -a, a);
 };
 
 export const r42: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, minorSeventhChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, minorSeventhChord, -a, a);
 };
 
 export const r35: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, -a, a);
 };
 
 export const r53: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, halfDiminishedChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, halfDiminishedChord, -a, a);
 };
 
 export const l13: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, halfDiminishedChord, b, -b);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, halfDiminishedChord, b, -b);
 };
 
 export const l15: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, diminishedSeventhChord, b, -b);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, diminishedSeventhChord, b, -b);
 };
 
 export const l42: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, minorSeventhChord, b, -b);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, minorSeventhChord, b, -b);
 };
 
 export const q43: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, halfDiminishedChord, b - a, -(b - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, halfDiminishedChord, b - a, -(b - a));
 };
 
 export const q15: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, diminishedSeventhChord, b - a, -(b - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, diminishedSeventhChord, b - a, -(b - a));
 };
 
 export const rr35: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, 2 * a, -(2 * a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, diminishedSeventhChord, 2 * a, -(2 * a));
 };
 
 export const qq51: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, , c] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, dominantSeventhChord, c - a, -(c - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, dominantSeventhChord, c - a, -(c - a));
 };
 
 export const n51: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, , c] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, dominantSeventhChord, c, -c);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, dominantSeventhChord, c, -c);
 };
 
 export const p18: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, sharpFiveDominantSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, sharpFiveDominantSeventhChord, 0, 0);
 };
 
 export const p19: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, flatFiveDominantSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, flatFiveDominantSeventhChord, 0, 0);
 };
 
 export const p26: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, minorMajorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, minorSeventhChord, minorMajorSeventhChord, 0, 0);
 };
 
 export const p39: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, flatFiveDominantSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, flatFiveDominantSeventhChord, 0, 0);
 };
 
 export const p47: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, augmentedMajorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, majorSeventhChord, augmentedMajorSeventhChord, 0, 0);
 };
 
 export const p64: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, minorMajorSeventhChord, majorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, minorMajorSeventhChord, majorSeventhChord, 0, 0);
 };
 
 export const p87: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, augmentedMajorSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, augmentedMajorSeventhChord, 0, 0);
 };
 
 export const p98: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, 0, 0);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, 0, 0);
 };
 
 export const r63: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, minorMajorSeventhChord, halfDiminishedChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, minorMajorSeventhChord, halfDiminishedChord, -a, a);
 };
 
 export const r76: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorMajorSeventhChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorMajorSeventhChord, -a, a);
 };
 
 export const r86: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, minorMajorSeventhChord, -a, a);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, minorMajorSeventhChord, -a, a);
 };
 
 export const l71: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, dominantSeventhChord, b, -b);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, dominantSeventhChord, b, -b);
 };
 
 export const l89: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, flatFiveDominantSeventhChord, b, -b);
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, sharpFiveDominantSeventhChord, flatFiveDominantSeventhChord, b, -b);
 };
 
 export const q62: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorSeventhChord, b - a, -(b - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorSeventhChord, b - a, -(b - a));
 };
 
 export const q76: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, b] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorMajorSeventhChord, b - a, -(b - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, augmentedMajorSeventhChord, minorMajorSeventhChord, b - a, -(b - a));
 };
 
 export const rr19: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, flatFiveDominantSeventhChord, 2 * a, -(2 * a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, dominantSeventhChord, flatFiveDominantSeventhChord, 2 * a, -(2 * a));
 };
 
 export const rr39: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, flatFiveDominantSeventhChord, 2 * a, -(2 * a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, flatFiveDominantSeventhChord, 2 * a, -(2 * a));
 };
 
 export const rr98: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, 2 * a, -(2 * a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, 2 * a, -(2 * a));
 };
 
 export const qq38: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, , c] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, sharpFiveDominantSeventhChord, c - a, -(c - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, halfDiminishedChord, sharpFiveDominantSeventhChord, c - a, -(c - a));
 };
 
 export const qq98: TransformationFunctionsSeventhChords = (chordFromTonnetz, tonnetz): Tetrachord => {
   const [a, , c] = tonnetz;
-  return tetraTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, c - a, -(c - a));
+  return PLRQExtendedTransformationFn(chordFromTonnetz, tonnetz, flatFiveDominantSeventhChord, sharpFiveDominantSeventhChord, c - a, -(c - a));
 };
 
 //////////////////////////////
 ///////////////////////////////
 export const q13: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = diminishedTriadChord(transformedChord[0] + (b - a), tonnetz);
-  } else {
-    transformedChord = majorChordFromTonnetz(transformedChord[0] - (b - a), tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [a, b] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, majorChordFromTonnetz, diminishedTriadChord, b - a, -(b - a));
 };
 
 export const q42: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = minorChordFromTonnetz(transformedChord[0] + (b - a), tonnetz);
-  } else {
-    transformedChord = augmentedTriadChord(transformedChord[0] - (b - a), tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [a, b] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, augmentedTriadChord, minorChordFromTonnetz, b - a, -(b - a));
 };
 
 export const l41: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = majorChordFromTonnetz(transformedChord[0] + b, tonnetz);
-  } else {
-    transformedChord = augmentedTriadChord(transformedChord[0] - b, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [, b] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, augmentedTriadChord, majorChordFromTonnetz, b, -b);
 };
 
 export const n42: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = minorChordFromTonnetz(transformedChord[0] + c, tonnetz);
-  } else {
-    transformedChord = augmentedTriadChord(transformedChord[0] - c, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [, , c] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, augmentedTriadChord, minorChordFromTonnetz, c, -c);
 };
 
 export const l14: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = augmentedTriadChord(transformedChord[0] + b, tonnetz);
-  } else {
-    transformedChord = majorChordFromTonnetz(transformedChord[0] - b, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [, b] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, majorChordFromTonnetz, augmentedTriadChord, b, -b);
 };
 
 export const p32: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = minorChordFromTonnetz(transformedChord[0], tonnetz);
-  } else {
-    transformedChord = diminishedTriadChord(transformedChord[0], tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, diminishedTriadChord, minorChordFromTonnetz, 0, 0);
 };
 
 export const rt42: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = minorChordFromTonnetz(transformedChord[0] - a, tonnetz);
-  } else {
-    transformedChord = augmentedTriadChord(transformedChord[0] + a, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [a] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, augmentedTriadChord, minorChordFromTonnetz, -a, +a);
 };
 
 export const p41: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, augmentedTriadChord(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = majorChordFromTonnetz(transformedChord[0], tonnetz);
-  } else {
-    transformedChord = augmentedTriadChord(transformedChord[0], tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, augmentedTriadChord, majorChordFromTonnetz, 0, 0);
 };
 
 export const lt13: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, majorChordFromTonnetz(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = diminishedTriadChord(transformedChord[0] + b, tonnetz);
-  } else {
-    transformedChord = majorChordFromTonnetz(transformedChord[0] - b, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [, b] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, majorChordFromTonnetz, diminishedTriadChord, +b, -b);
 };
 
 export const rt23: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b, c] = tonnetz;
-  const modulo = a + b + c;
-  const reduceModN = chordNotesToModN(chordFromTonnetz);
-
-  const equalToChordOne = firstChordComparison(reduceModN, minorChordFromTonnetz(reduceModN[0], tonnetz));
-  const equalToChordTwo = secondChordComparison(reduceModN, diminishedTriadChord(reduceModN[0], tonnetz));
-
-  if (equalToChordOne === equalToChordTwo) return reduceModN;
-
-  let transformedChord: TriadChord = [...reduceModN];
-  if (equalToChordOne) {
-    transformedChord = diminishedTriadChord(transformedChord[0] - a, tonnetz);
-  } else {
-    transformedChord = minorChordFromTonnetz(transformedChord[0] + a, tonnetz);
-  }
-  const targetTetraChord = chordNotesToModN(transformedChord, modulo);
-  return targetTetraChord;
+  const [a] = tonnetz;
+  return PLRStarTransformationFn(chordFromTonnetz, tonnetz, minorChordFromTonnetz, diminishedTriadChord, -a, +a);
 };
 
 export const p1M: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz): TriadChord | Tetrachord => {
