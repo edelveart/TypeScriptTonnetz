@@ -1,4 +1,4 @@
-import type { Tetrachord, TonnetzSpaces, TriadChord, ConstructorTetraChord, ConstructorTriadChord } from "../tonnetz-types";
+import type { Tetrachord, TonnetzSpaces, TriadChord, ConstructorTetraChord, ConstructorTriadChord } from "./tonnetz-types";
 import { majorChordFromTonnetz, minorChordFromTonnetz } from "./chord-constructors";
 import { chordComparison, chordNotesToModN, sortingTriadChord } from "./utils";
 
