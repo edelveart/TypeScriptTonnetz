@@ -1,8 +1,8 @@
-import type { Tetrachord, TonnetzSpaces, TriadChord, ConstructorTetraChord } from "../tonnetz-types";
+import type { Tetrachord, TonnetzSpaces, TriadChord, ConstructorTetraChord, ConstructorTriadChord } from "../tonnetz-types";
 import { majorChordFromTonnetz, minorChordFromTonnetz } from "./chord-constructors";
 import { chordComparison, chordNotesToModN, sortingTriadChord } from "./utils";
 
-export const triadTransformationFn = (chordFromTonnetz: TriadChord, tonnetz: TonnetzSpaces, x: number, y: number): TriadChord => {
+export const PLRFilmTransformationFn = (chordFromTonnetz: TriadChord, tonnetz: TonnetzSpaces, x: number, y: number): TriadChord => {
   const modulo = tonnetz.reduce((acc, value) => acc + value, 0);
   const reduceModN = chordNotesToModN(chordFromTonnetz);
   let rootPositionTriad: TriadChord = sortingTriadChord(reduceModN, tonnetz);
@@ -21,7 +21,27 @@ export const triadTransformationFn = (chordFromTonnetz: TriadChord, tonnetz: Ton
   return targetTriadChord;
 };
 
-export const tetraTransformationFn = (chordFromTonnetz: Tetrachord, tonnetz: TonnetzSpaces, chordTypeOne: ConstructorTetraChord, chordTypeTwo: ConstructorTetraChord, x: number, y: number): Tetrachord => {
+export const PLRStarTransformationFn = (chordFromTonnetz: TriadChord, tonnetz: TonnetzSpaces, chordTypeOne: ConstructorTriadChord, chordTypeTwo: ConstructorTriadChord, x: number, y: number): TriadChord => {
+  const modulo = tonnetz.reduce((acc, value) => acc + value, 0);
+
+  const reduceModN = chordNotesToModN(chordFromTonnetz);
+
+  const equalToChordOne = chordComparison(reduceModN, chordTypeOne(reduceModN[0], tonnetz));
+  const equalToChordTwo = chordComparison(reduceModN, chordTypeTwo(reduceModN[0], tonnetz));
+
+  if (equalToChordOne === equalToChordTwo) return reduceModN;
+
+  let transformedChord: TriadChord = [...reduceModN];
+  if (equalToChordOne) {
+    transformedChord = chordTypeTwo(transformedChord[0] + x, tonnetz);
+  } else {
+    transformedChord = chordTypeOne(transformedChord[0] + y, tonnetz);
+  }
+  const targetTriadChord = chordNotesToModN(transformedChord, modulo);
+  return targetTriadChord;
+};
+
+export const PLRQExtendedTransformationFn = (chordFromTonnetz: Tetrachord, tonnetz: TonnetzSpaces, chordTypeOne: ConstructorTetraChord, chordTypeTwo: ConstructorTetraChord, x: number, y: number): Tetrachord => {
   const modulo = tonnetz.reduce((acc, value) => acc + value, 0);
 
   const reduceModN = chordNotesToModN(chordFromTonnetz);

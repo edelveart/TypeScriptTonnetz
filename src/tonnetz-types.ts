@@ -30,4 +30,5 @@ export type ChordGenerators = {
   [key: string]: ChordGenerationFunctions;
 };
 
+export type ConstructorTriadChord = (rootNote: number, tonnetz: TonnetzSpaces) => TriadChord;
 export type ConstructorTetraChord = (rootNote: number, tonnetz: TonnetzSpaces) => Tetrachord;
