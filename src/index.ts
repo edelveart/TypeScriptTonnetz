@@ -1,2 +1,2 @@
-export * from './ts-tonnetz';
-export * from './tonnetz-types';
+export * from "./ts-tonnetz";
+export * from "./tonnetz-types";
