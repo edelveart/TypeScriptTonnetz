@@ -1,4 +1,4 @@
-import { Tetrachord, TonnetzSpaces, TriadChord } from "../tonnetz-types";
+import { Tetrachord, TonnetzSpaces, TriadChord } from "./tonnetz-types";
 
 export const safeMod = (value: number, n: number) => {
   if (value === 0 || n === 0) return 0;

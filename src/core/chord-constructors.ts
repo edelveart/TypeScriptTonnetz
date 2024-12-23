@@ -1,4 +1,4 @@
-import { Tetrachord, TonnetzSpaces, TriadChord } from "../tonnetz-types";
+import { Tetrachord, TonnetzSpaces, TriadChord } from "./tonnetz-types";
 
 export const majorChordFromTonnetz = (rootNote: number, tonnetz: TonnetzSpaces): TriadChord => {
   const [a, b, c] = tonnetz;

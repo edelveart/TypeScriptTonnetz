@@ -1,6 +1,6 @@
-import { majorChordFromTonnetz, minorChordFromTonnetz } from "./core/chord-constructors";
-import { chordNotesToModN } from "./core/utils";
-import { TonnetzSpaces, TriadChord } from "./tonnetz-types";
+import { majorChordFromTonnetz, minorChordFromTonnetz } from "../core/chord-constructors";
+import { chordNotesToModN } from "../core/utils";
+import { TonnetzSpaces, TriadChord } from "../core/tonnetz-types";
 
 export const surrealCardinalPoints = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const [a] = tonnetz;

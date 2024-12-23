@@ -1,6 +1,6 @@
-import { majorChordFromTonnetz, minorChordFromTonnetz } from "./core/chord-constructors";
-import { chordNotesToModN } from "./core/utils";
-import { TonnetzSpaces, TriadChord } from "./tonnetz-types";
+import { majorChordFromTonnetz, minorChordFromTonnetz } from "../core/chord-constructors";
+import { chordNotesToModN } from "../core/utils";
+import { TonnetzSpaces, TriadChord } from "../core/tonnetz-types";
 
 export const hamiltonianCycle1 = (rootNote: number, tonnetz: TonnetzSpaces = [3, 4, 5], reps: number = 12): TriadChord[] => {
   const [a, b] = tonnetz;
