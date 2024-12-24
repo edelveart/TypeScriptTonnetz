@@ -1,21 +1,43 @@
-# TypeScript Tonnetz
+<h1 align="center"> TS-Tonnetz </h1>
 
-![NPM Version](https://img.shields.io/npm/v/ts-tonnetz)
+**TS-Tonnetz** is a library of transformations, graphs, and cycles from *Mathematical Music Theory*, enabling the creation, manipulation, and analysis of musical structures across various Tonnetz spaces.
 
-TypeScript Tonnetz is a set of functions and operations from Mathematical Music Theory (transformational approach). Specifically, it deals with Tonnetz spaces and functions related to the topic.
-The objective is not musicological analysis itself, but the application of these tools born from analysis for algorithmic composition and live coding.
+<p align="center">
+ <img src="https://img.shields.io/npm/v/ts-tonnetz" alt="NPM Version">
+ <img src="https://img.shields.io/npm/l/ts-tonnetz" alt="NPM License">
+</p>
 
-It emerged as a development branch to contribute to Miika Alonen's phenomenal [ZifferJS](https://github.com/amiika/zifferjs) project.
+![ts-tonnetz-social-image](ts-tonnetz.png)
+
+## Currently Integrated in [**Topos**](https://topos.live/#ziffers_tonnetz)
+
+TS-Tonnetz is now **integrated into the [**Topos live coding environment**](https://topos.live/#ziffers_tonnetz)**, where you can try it out and explore its features directly.
+
+##  Suite of Tonnetz Tools with Academic Grounding
+
+It emerged as a development branch in late 2023 to contribute to Miika Alonen's phenomenal [**ZifferJS**](https://github.com/amiika/zifferjs) project.
+
+Backed by *two doctoral theses* and additional *research articles*, TS-Tonnetz offers a powerful set of tools for exploring musical operations within various Tonnetz spaces. Its focus is on the application of these tools for **algorithmic composition** and **live coding**, rather than musicological analysis.
+
+## Installation
+
+```node
+npm i ts-tonnetz
+```
 
 ## Features Implemented
 
-Transformations and functions follow the edge flip between triangles and their geometries (so far), so they maintain two common notes (not necessarily voice-leading considerations). In other words, diferent Tonnetz Spaces follow the voice-leading space geometry of the conventional Tonnetz.
+Transformations follow the edge flip between triangles and their geometries (so far), maintaining two common notes (not necessarily considering voice-leading). In other words, different Tonnetz spaces adhere to the voice-leading space geometry of the conventional Tonnetz.
 
-- [x] PRL functions and compositions of any length, cardinal transformations
+- [x] PRL functions and compositions of any length
 - [x] Film music transformations: `f(), n(), s(), h(), t6()`
-- [x] HexaCycles, OctaCycles, EnneaCycles, Hamiltonian Cycles
-- [x] Weitzmann Regions, Boretz Regions, OctaTowers
-- [x] Cube Dance, Power Towers
+- [x] Cardinal transformations
+- [x] Cube Dance
+- [x] OctaTowers
+- [x] Power Towers
+- [x] Weitzmann Regions, Boretz Regions
+- [x] HexaCycles, OctaCycles, EnneaCycles
+- [x] Hamiltonian Cycles
 
 Mathematical inspiration (`Trajectoires`) in the Doctoral thesis written by [**Louis Bigo**](https://theses.hal.science/tel-01326827):
 
@@ -23,14 +45,12 @@ Mathematical inspiration (`Trajectoires`) in the Doctoral thesis written by [**L
 Représentations symboliques musicales et calcul spatial (2013).
 ```
 
-## Dual geometry of the Tonnetz
+## Dual Geometry of the Tonnetz
 
 We have implemented all the Neo-Riemannian functions developed in the Doctoral thesis written by [**Sonia Cannas**](https://publication-theses.unistra.fr/public/theses_doctorat/2018/CANNAS_Sonia_2018_ED269.pdf):
 
 ```text
-GEOMETRIC REPRESENTATION AND
-ALGEBRAIC FORMALIZATION OF
-MUSICAL STRUCTURES (2018)
+Geometric Representation and Algebraic Formalization of Musical Structures (2018).
 ```
 
 Each of these new transformations from the generalized transformational theory for seventh chords is enabled for the Tonnetz you want to explore.
