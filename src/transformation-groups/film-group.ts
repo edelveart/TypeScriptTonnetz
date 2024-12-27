@@ -3,20 +3,6 @@ import { PLRFilmTransformationFn } from "../core/transform-functions";
 import { chordComparison, chordNotesToModN, sortingTriadChord } from "../core/utils";
 import { TransformationFunctions, TriadChord } from "../core/tonnetz-types";
 
-export const parallelTransform: TransformationFunctions = (chordFromTonnetz, tonnetz) => {
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, 0, 0);
-};
-
-export const leadingToneTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [, b] = tonnetz;
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, +b, -b);
-};
-
-export const relativeTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a] = tonnetz;
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, -a, +a);
-};
-
 export const f: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
   const [a, b] = tonnetz;
 
@@ -58,23 +44,10 @@ export const t6: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadCho
   return chordNotesToModN(rootPositionTriad, modulo);
 };
 
-export const northTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b] = tonnetz;
-
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, b, a);
-};
-
-export const southTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b] = tonnetz;
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, -a, -b);
-};
-
-export const eastTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b] = tonnetz;
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, b - a, 0);
-};
-
-export const westTransform: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadChord => {
-  const [a, b] = tonnetz;
-  return PLRFilmTransformationFn(chordFromTonnetz, tonnetz, 0, -(b - a));
+export const FILM = {
+  f,
+  n,
+  s,
+  h,
+  t6,
 };

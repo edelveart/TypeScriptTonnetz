@@ -1,0 +1,41 @@
+import { PLRQ_EXTENDED } from "./plrq-extended-group";
+
+export class SeventhsTransformations {
+  static p12 = PLRQ_EXTENDED.p12;
+  static p14 = PLRQ_EXTENDED.p14;
+  static p23 = PLRQ_EXTENDED.p23;
+  static p35 = PLRQ_EXTENDED.p35;
+  static r12 = PLRQ_EXTENDED.r12;
+  static r23 = PLRQ_EXTENDED.r23;
+  static r42 = PLRQ_EXTENDED.r42;
+  static r35 = PLRQ_EXTENDED.r35;
+  static r53 = PLRQ_EXTENDED.r53;
+  static l13 = PLRQ_EXTENDED.l13;
+  static l15 = PLRQ_EXTENDED.l15;
+  static l42 = PLRQ_EXTENDED.l42;
+  static q43 = PLRQ_EXTENDED.q43;
+  static q15 = PLRQ_EXTENDED.q15;
+  static rr35 = PLRQ_EXTENDED.rr35;
+  static qq51 = PLRQ_EXTENDED.qq51;
+  static n51 = PLRQ_EXTENDED.n51;
+  static p18 = PLRQ_EXTENDED.p18;
+  static p19 = PLRQ_EXTENDED.p19;
+  static p26 = PLRQ_EXTENDED.p26;
+  static p39 = PLRQ_EXTENDED.p39;
+  static p47 = PLRQ_EXTENDED.p47;
+  static p64 = PLRQ_EXTENDED.p64;
+  static p87 = PLRQ_EXTENDED.p87;
+  static p98 = PLRQ_EXTENDED.p98;
+  static r63 = PLRQ_EXTENDED.r63;
+  static r76 = PLRQ_EXTENDED.r76;
+  static r86 = PLRQ_EXTENDED.r86;
+  static l71 = PLRQ_EXTENDED.l71;
+  static l89 = PLRQ_EXTENDED.l89;
+  static q62 = PLRQ_EXTENDED.q62;
+  static q76 = PLRQ_EXTENDED.q76;
+  static rr19 = PLRQ_EXTENDED.rr19;
+  static rr39 = PLRQ_EXTENDED.rr39;
+  static rr98 = PLRQ_EXTENDED.rr98;
+  static qq38 = PLRQ_EXTENDED.qq38;
+  static qq98 = PLRQ_EXTENDED.qq98;
+}

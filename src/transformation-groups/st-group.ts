@@ -56,3 +56,18 @@ export const z5d: TransformationTriadSeventhChords = (chordFromTonnetz, tonnetz)
   const [a] = tonnetz;
   return STTransformationFn(chordFromTonnetz, tonnetz, diminishedSeventhChord, diminishedTriadChord, -a, a);
 };
+
+export const ST_GROUP = {
+  p1M,
+  l1d,
+  p2m,
+  r2M,
+  p3d,
+  r3m,
+  p4M,
+  l4m,
+  p5d,
+  r5d,
+  rr5d,
+  z5d,
+};

@@ -49,3 +49,16 @@ export const rt23: TransformationFunctions = (chordFromTonnetz, tonnetz): TriadC
   const [a] = tonnetz;
   return PLRStarTransformationFn(chordFromTonnetz, tonnetz, minorChordFromTonnetz, diminishedTriadChord, -a, +a);
 };
+
+export const PLR_STAR = {
+  q13,
+  q42,
+  l41,
+  n42,
+  l14,
+  p32,
+  rt42,
+  p41,
+  lt13,
+  rt23,
+};
