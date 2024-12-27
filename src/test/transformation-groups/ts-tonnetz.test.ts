@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { seventhsTransform, transform } from "../../ts-tonnetz";
-import { l1d, l4m, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, z5d } from "../../transformation-groups/st-transformations";
+import { l1d, l4m, p1M, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, z5d } from "../../transformation-groups/st-group";
 
 describe("tonnetz-tests", () => {
   it('tonnetzTransformation "p,r,l" and "involutions" to "normal form"', () => {
