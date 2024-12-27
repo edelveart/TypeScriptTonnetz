@@ -1,10 +1,13 @@
 export * from "./ts-tonnetz";
 export * from "./core/tonnetz-types";
+export * from "./TSTonnetz";
 
-export * from "./transformation-groups/plr-film-transformations";
-export * from "./transformation-groups/plrq-extended-transformations";
-export * from "./transformation-groups/plr-star-transformations";
-export * from "./transformation-groups/st-transformations";
+export * from "./transformation-groups/plr-group";
+export * from "./transformation-groups/film-group";
+export * from "./transformation-groups/cardinal-group";
+export * from "./transformation-groups/plr-star-group";
+export * from "./transformation-groups/plrq-extended-group";
+export * from "./transformation-groups/st-group";
 
 export * from "./cycles/hexa-octa-enea-cycles";
 export * from "./cycles/hamiltonian-cycles";
