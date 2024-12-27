@@ -16,13 +16,15 @@ import {
   sharpFiveDominantSeventhChord,
 } from "./core/chord-constructors";
 
-import { parallelTransform, leadingToneTransform, relativeTransform, f, n, h, s, t6, northTransform, southTransform, eastTransform, westTransform } from "./transformation-groups/plr-film-transformations";
+import { parallelTransform, leadingToneTransform, relativeTransform } from "./transformation-groups/plr-group";
+import { f, n, h, s, t6 } from "./transformation-groups/film-group";
+import { northTransform, southTransform, eastTransform, westTransform } from "./transformation-groups/cardinal-group";
 
-import { p12, p14, p23, p35, r12, r23, r42, r35, r53, l13, l15, l42, q43, q15, rr35, qq51, n51, p18, p19, p26, p39, p47, p64, p87, p98, r63, r76, r86, l71, l89, q62, q76, rr19, rr39, rr98, qq38, qq98 } from "./transformation-groups/plrq-extended-transformations";
+import { p12, p14, p23, p35, r12, r23, r42, r35, r53, l13, l15, l42, q43, q15, rr35, qq51, n51, p18, p19, p26, p39, p47, p64, p87, p98, r63, r76, r86, l71, l89, q62, q76, rr19, rr39, rr98, qq38, qq98 } from "./transformation-groups/plrq-extended-group";
 
-import { l14, l41, lt13, n42, p32, p41, q13, q42, rt23, rt42 } from "./transformation-groups/plr-star-transformations";
+import { l14, l41, lt13, n42, p32, p41, q13, q42, rt23, rt42 } from "./transformation-groups/plr-star-group";
 
-import { l1d, p1M, l4m, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, z5d } from "./transformation-groups/st-transformations";
+import { l1d, p1M, l4m, p2m, p3d, p4M, p5d, r2M, r3m, r5d, rr5d, z5d } from "./transformation-groups/st-group";
 import { safeMod, sortingTriadChord, chordNotesToModN } from "./core/utils";
 
 export const CHORD_TYPES: ChordGenerators = {
