@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { genCardinalPoints, genCardinalTriangularGraph, genTriangularPoints } from "../../graphs/axis-system";
+import { genCardinalPoints, genCardinalTriangularGraph, genTriangularPoints } from "../../graphs/triangular-system";
 
 describe("tonnetz-tests", () => {
   it("CardinalPoints and Axial System", () => {
