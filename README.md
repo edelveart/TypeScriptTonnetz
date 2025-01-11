@@ -91,7 +91,7 @@ Mathematical, Computational and Compositional Aspects
 ```
 ### Extensions of the Axis System in Béla Bartók
 
-Generalized implementation on any Tonnetz of the harmonic groups of **axis system** ideaded by [**Ernő Lendvai**](http://www.harmonicwheel.com/bartok_axes.pdf): Tonic (8 chords), Subdominant (8 chords), and Dominant (8 chords). The parameters specify two directions, sought emotion (based on the ideas of [**Mauro de Maria**](https://www.youtube.com/watch?v=EhmbTaEKUZo)), cross or diagonal movement. Major-minor and minor-major alternation available for cross path.
+Generalized implementation on any Tonnetz of the harmonic groups of **axis system** ideaded by [**Ernő Lendvai**](https://web.archive.org/web/20150614031849/http://www.harmonicwheel.com/bartok_axes.pdf): Tonic (8 chords), Subdominant (8 chords), and Dominant (8 chords). The parameters specify two directions, sought emotion (based on the ideas of [**Mauro de Maria**](https://www.youtube.com/watch?v=EhmbTaEKUZo)), cross or diagonal movement. Major-minor and minor-major alternation available for cross path.
 
 The manipulation can be done using a single function:
 * `genCardinalPoints()`
