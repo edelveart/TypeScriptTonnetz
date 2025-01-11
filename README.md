@@ -82,7 +82,7 @@ Transformations between triad chords and different types of seventh chords. The 
 
 - [x]  `p1M, l1d, p2m, r2M, p3d, r3m, p4M, l4m, p5d, r5d, rr5d, z5d`
 
-Mathematical inspiration in the paper:
+Mathematical inspiration in [**the paper**](https://hal.science/hal-02021946/):
 
 ```text
 A Generalized Dual of the Tonnetz for Seventh Chords:
