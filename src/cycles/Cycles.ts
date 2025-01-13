@@ -1,5 +1,16 @@
-import { hexaCycles, octaCycles, enneaCycles } from "./hexa-octa-enea-cycles";
-import { hamiltonianCycle1, hamiltonianCycle2, hamiltonianCycle3, hamiltonianCycle4, hamiltonianCycle5, hamiltonianCycle6, hamiltonianCycle7, hamiltonianCycle8 } from "./hamiltonian-cycles";
+import { hexaCycles } from "./hexa-cycles";
+import { octaCycles } from "./octa-cycles";
+import { enneaCycles } from "./enea-cycles";
+import {
+  hamiltonianCycle1,
+  hamiltonianCycle2,
+  hamiltonianCycle3,
+  hamiltonianCycle4,
+  hamiltonianCycle5,
+  hamiltonianCycle6,
+  hamiltonianCycle7,
+  hamiltonianCycle8,
+} from "./hamiltonian-cycles";
 
 export class Cycles {
   static hexaCycles = hexaCycles;

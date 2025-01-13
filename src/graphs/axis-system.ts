@@ -97,7 +97,7 @@ const EXPLORE_MAP: ExploreMapOfAxisFuncs = {
   9: [axisCrossMajMin, axisCrossMinMaj],
 };
 
-export const axisSystem = (rootNote: number, explore: number = 0, tonnetz: TonnetzSpaces = [3, 4, 5]) => {
+export const axisSystem = (rootNote: number, explore: number = 0, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
   const numOfMapOpts = Object.keys(EXPLORE_MAP).length;
 
   explore = ((explore % numOfMapOpts) + numOfMapOpts) % numOfMapOpts;

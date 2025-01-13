@@ -2,22 +2,17 @@ import { majorChordFromTonnetz, minorChordFromTonnetz } from "../core/chord-cons
 import { chordNotesToModN } from "../core/utils";
 import { TonnetzSpaces, TriadChord } from "../core/tonnetz-types";
 
-export const surrealCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisClockMajor = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5]): TriadChord[] => {
   const [a] = tonnetz;
   const cardinalArray: TriadChord[] = [];
 
   if (clockwise === -1) {
-    for (let index = 0; index < elements * a; index += a) {
+    for (let index = 0; index < 4 * a; index += a) {
       const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
       cardinalArray.push(majorTriadsGroup);
     }
   } else if (clockwise === 1) {
-    for (let index = 0; index > elements * -a; index -= a) {
+    for (let index = 0; index > 4 * -a; index -= a) {
       const majorTriadsGroup = chordNotesToModN(majorChordFromTonnetz(rootNote + index, tonnetz));
       cardinalArray.push(majorTriadsGroup);
     }
@@ -25,12 +20,7 @@ export const surrealCardinalPoints = (
   return cardinalArray;
 };
 
-export const scienceFictionCardinalPoints = (
-  rootNote: number,
-  clockwise = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisClockMinor = (rootNote: number, clockwise = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const [a] = tonnetz;
   const cardinalArray: TriadChord[] = [];
   if (clockwise === -1) {
@@ -47,36 +37,21 @@ export const scienceFictionCardinalPoints = (
   return cardinalArray;
 };
 
-export const epicSurrealCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisCrossMajor = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const cardinalArray: TriadChord[] = [];
-  const [north, west, south, east] = surrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const [north, west, south, east] = axisClockMajor(rootNote, clockwise, tonnetz, elements);
   cardinalArray.push(north, south, west, east);
   return cardinalArray;
 };
 
-export const epicScienceFictionCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisCrossMinor = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const cardinalArray: TriadChord[] = [];
-  const [north, west, south, east] = scienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const [north, west, south, east] = axisClockMinor(rootNote, clockwise, tonnetz, elements);
   cardinalArray.push(north, south, west, east);
   return cardinalArray;
 };
 
-export const magicCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisClockMajMin = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const [a] = tonnetz;
   const cardinalArray: TriadChord[] = [];
   let parity = 0;
@@ -106,41 +81,24 @@ export const magicCardinalPoints = (
   return cardinalArray;
 };
 
-export const epicMixtureMinMajCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisCrossMinMaj = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const cardinalArray: TriadChord[] = [];
-  const [northMin, , westMin] = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
-  const [, southMaj, , eastMaj] = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const [northMin, , westMin] = axisCrossMinor(rootNote, clockwise, tonnetz, elements);
+  const [, southMaj, , eastMaj] = axisCrossMajor(rootNote, clockwise, tonnetz, elements);
   cardinalArray.push(northMin, southMaj, westMin, eastMaj);
   return cardinalArray;
 };
 
-export const epicMixtureMajMinCardinalPoints = (
-  rootNote: number,
-  clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
-): TriadChord[] => {
+export const axisCrossMajMin = (rootNote: number, clockwise: number = -1, tonnetz: TonnetzSpaces = [3, 4, 5], elements: number = 4): TriadChord[] => {
   const cardinalArray: TriadChord[] = [];
-  const [northMaj, , westMaj] = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
-  const [, southMin, , eastMin] = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const [northMaj, , westMaj] = axisCrossMajor(rootNote, clockwise, tonnetz, elements);
+  const [, southMin, , eastMin] = axisCrossMinor(rootNote, clockwise, tonnetz, elements);
   cardinalArray.push(northMaj, southMin, westMaj, eastMin);
   return cardinalArray;
 };
 
-export const poleBonding = (lastChord: TriadChord[]): number[] => {
-  const size = lastChord.length - 1;
-  const newRootNote = lastChord[size][0];
-  const majorOrMinor = lastChord[size][1] - newRootNote;
-  return [newRootNote, majorOrMinor];
-};
-
 type diagCrossEmotion = "surreal" | "scienceFiction" | "epicSurreal" | "epicScienceFiction" | "magic" | "epicMajMin" | "epicMinMaj";
-type fnsCardinalOrTriangularPoints = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces, elements: number) => TriadChord[];
+type fnsCardinalOrTriangularPoints = (rootNote: number, clockwise: number, tonnetz: TonnetzSpaces) => TriadChord[];
 
 type objectCardinalPoints = {
   surreal: fnsCardinalOrTriangularPoints;
@@ -153,23 +111,22 @@ type objectCardinalPoints = {
 };
 
 const applyCardinalFn: objectCardinalPoints = {
-  surreal: surrealCardinalPoints,
-  scienceFiction: scienceFictionCardinalPoints,
-  magic: magicCardinalPoints,
-  epicSurreal: epicSurrealCardinalPoints,
-  epicScienceFiction: surrealCardinalPoints,
-  epicMajMin: epicMixtureMajMinCardinalPoints,
-  epicMinMaj: epicMixtureMinMajCardinalPoints,
+  surreal: axisClockMajor,
+  scienceFiction: axisClockMinor,
+  magic: axisClockMajMin,
+  epicSurreal: axisCrossMajor,
+  epicScienceFiction: axisClockMajor,
+  epicMajMin: axisCrossMajMin,
+  epicMinMaj: axisCrossMinMaj,
 };
 
 export const genCardinalPoints = (
   rootNote: number,
   diagCross: diagCrossEmotion = "surreal",
   clockwise: number = -1,
-  tonnetz: TonnetzSpaces = [3, 4, 5],
-  elements: number = 4
+  tonnetz: TonnetzSpaces = [3, 4, 5]
 ): TriadChord[] => {
-  return applyCardinalFn[diagCross](rootNote, clockwise, tonnetz, elements);
+  return applyCardinalFn[diagCross](rootNote, clockwise, tonnetz);
 };
 
 export const surrealTriangularPoints = (
@@ -279,7 +236,7 @@ export const cardinalSFTriangularSurrealGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = scienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisClockMinor(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   for (let index = 0; index < reps; ++index) {
     if (index % 2 === 0) {
@@ -290,7 +247,7 @@ export const cardinalSFTriangularSurrealGraph = (
     } else {
       if (clockwise === -1) rootNote -= b;
       else if (clockwise === 1) rootNote += b;
-      const minorTriadsGroup = scienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+      const minorTriadsGroup = axisClockMinor(rootNote, clockwise, tonnetz, elements);
       graphArray.push(minorTriadsGroup);
     }
   }
@@ -307,7 +264,7 @@ export const cardinalSurrealTriangularSFGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = surrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisClockMajor(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   for (let index = 0; index < reps; ++index) {
     if (index % 2 === 0) {
@@ -318,7 +275,7 @@ export const cardinalSurrealTriangularSFGraph = (
     } else {
       if (clockwise === -1) rootNote -= b;
       else if (clockwise === 1) rootNote += b;
-      const minorTriadsGroup = surrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+      const minorTriadsGroup = axisClockMajor(rootNote, clockwise, tonnetz, elements);
       graphArray.push(minorTriadsGroup);
     }
   }
@@ -335,7 +292,7 @@ export const cardinalEpicSFTriangularSurrealGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisCrossMinor(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   for (let index = 0; index < reps; ++index) {
     if (index % 2 === 0) {
@@ -346,7 +303,7 @@ export const cardinalEpicSFTriangularSurrealGraph = (
     } else {
       if (clockwise === -1) rootNote -= b;
       else if (clockwise === 1) rootNote += b;
-      const minorTriadsGroup = epicScienceFictionCardinalPoints(rootNote, clockwise, tonnetz, elements);
+      const minorTriadsGroup = axisCrossMinor(rootNote, clockwise, tonnetz, elements);
       graphArray.push(minorTriadsGroup);
     }
   }
@@ -363,7 +320,7 @@ export const cardinalEpicSurrealTriangularSFGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisCrossMajor(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   for (let index = 0; index < reps; ++index) {
     if (index % 2 === 0) {
@@ -374,7 +331,7 @@ export const cardinalEpicSurrealTriangularSFGraph = (
     } else {
       if (clockwise === -1) rootNote -= b;
       else if (clockwise === 1) rootNote += b;
-      const minorTriadsGroup = epicSurrealCardinalPoints(rootNote, clockwise, tonnetz, elements);
+      const minorTriadsGroup = axisCrossMajor(rootNote, clockwise, tonnetz, elements);
       graphArray.push(minorTriadsGroup);
     }
   }
@@ -391,7 +348,7 @@ export const epicMajMinCardinalTriangularGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisCrossMajMin(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   let acc = 0;
   for (let index = 0; index < reps; ++index) {
@@ -411,10 +368,10 @@ export const epicMajMinCardinalTriangularGraph = (
       else if (clockwise === 1) rootNote += b;
 
       if (acc % 2 === 0) {
-        const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements);
+        const minorTriadsGroup = axisCrossMinMaj(rootNote, clockwise, tonnetz, elements);
         graphArray.push(minorTriadsGroup);
       } else if (acc % 2 === 1) {
-        const majorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements);
+        const majorTriadsGroup = axisCrossMajMin(rootNote, clockwise, tonnetz, elements);
         graphArray.push(majorTriadsGroup);
       }
     }
@@ -433,7 +390,7 @@ export const epicMinMajCardinalTriangularGraph = (
   const [a, b] = tonnetz;
   const graphArray: TriadChord[][] = [];
 
-  const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements);
+  const minorTriadsGroup = axisCrossMinMaj(rootNote, clockwise, tonnetz, elements);
   graphArray.push(minorTriadsGroup);
   let acc = 0;
   for (let index = 0; index < reps; ++index) {
@@ -453,10 +410,10 @@ export const epicMinMajCardinalTriangularGraph = (
       else if (clockwise === 1) rootNote += b;
 
       if (acc % 2 === 0) {
-        const majorTriadsGroup = epicMixtureMajMinCardinalPoints(rootNote, clockwise, tonnetz, elements);
+        const majorTriadsGroup = axisCrossMajMin(rootNote, clockwise, tonnetz, elements);
         graphArray.push(majorTriadsGroup);
       } else if (acc % 2 === 1) {
-        const minorTriadsGroup = epicMixtureMinMajCardinalPoints(rootNote, clockwise, tonnetz, elements);
+        const minorTriadsGroup = axisCrossMinMaj(rootNote, clockwise, tonnetz, elements);
         graphArray.push(minorTriadsGroup);
       }
     }

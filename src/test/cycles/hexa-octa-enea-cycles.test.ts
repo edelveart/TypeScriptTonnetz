@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { enneaCycles, hexaCycles, octaCycles } from "../../cycles/hexa-octa-enea-cycles";
+import { hexaCycles } from "../../cycles/hexa-cycles";
+import { octaCycles } from "../../cycles/octa-cycles";
+import { enneaCycles } from "../../cycles/ennea-cycles";
 
 describe("tonnetz-tests", () => {
   it("HexaCycles", () => {
