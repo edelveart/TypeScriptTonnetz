@@ -1,6 +1,6 @@
 import { hexaCycles } from "./hexa-cycles";
 import { octaCycles } from "./octa-cycles";
-import { enneaCycles } from "./enea-cycles";
+import { enneaCycles } from "./ennea-cycles";
 import {
   hamiltonianCycle1,
   hamiltonianCycle2,
