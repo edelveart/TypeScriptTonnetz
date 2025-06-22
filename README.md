@@ -3,8 +3,10 @@
 **TS-Tonnetz** is a library of transformations, graphs, and cycles from *Mathematical Music Theory*, enabling the creation, manipulation, and analysis of musical structures across various Tonnetz spaces.
 
 <p align="center">
- <img src="https://img.shields.io/npm/v/ts-tonnetz" alt="NPM Version">
- <img src="https://img.shields.io/npm/l/ts-tonnetz" alt="NPM License">
+  <img src="https://img.shields.io/npm/v/ts-tonnetz" alt="NPM Version">
+  <img src="https://img.shields.io/github/stars/edelveart/TypeScriptTonnetz" alt="GitHub Repo stars">
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/ts-tonnetz">
+  <img src="https://img.shields.io/npm/l/ts-tonnetz" alt="NPM License">
 </p>
 
 ![ts-tonnetz-social-image](ts-tonnetz.png)
